@@ -1,0 +1,35 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.body {
+    text-align: center;
+    flex: 1;
+    display: flex;
+}
+
+.components {
+    flex: 1;
+}
+
+.canvas {
+    flex: 1;
+}
+
+.attributes {
+    flex: 1;
+}
+
+.widget {
+    border-width: 1px;
+    border-color: red;
+    border-style: solid;
+    user-select: none;
+    width: fit-content;
+}
+
+.line {
+    border: 1px solid black;
+}
