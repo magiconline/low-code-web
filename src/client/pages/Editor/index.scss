@@ -1,0 +1,39 @@
+.editor-wrapper {
+  height: 100vh;
+  background: rgb(246, 240, 240);
+
+  .editor-header {
+    height: 64px;
+
+  }
+  .editor-main {
+    height: calc(100% - 64px);
+    position: relative;
+
+    .editor-left {
+      position: absolute;
+      height: 100%;
+      width: 200px;
+      left: 0;
+      top: 0;
+      padding-top: 10px;
+      background-color: rgb(190, 183, 183);
+    }
+    
+    .editor-right {
+      position: absolute;
+      height: 100%;
+      width: 200px;
+      right: 0;
+      top: 0;
+      background-color:rgb(183, 175, 175);
+    }
+
+    .editor-container {
+      margin-left: 200px;
+      height: 100%;
+      overflow: auto;
+      background: #fff;
+    }
+  }
+}

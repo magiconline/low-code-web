@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
+import 'normalize.css'
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router/Router';
 
 function App() {
-    return (
-        <div className="App">
-
-        </div>
-    );
+  return (
+    <BrowserRouter>
+      <Router/>
+    </BrowserRouter>
+  );
 }
-
 export default App;
