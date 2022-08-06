@@ -13,9 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (username && phone && password) {
                 // 尝试插入数据，重复会抛出异常
                 const result = await userCollection.insertOne({
-                    'username': username,
-                    'phone': phone,
-                    'password': password
+                    username: username,
+                    phone: phone,
+                    password: password
                 })
 
                 res.json({
