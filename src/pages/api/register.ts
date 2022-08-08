@@ -1,7 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    await NextCors(req, res, {
+        methods: ['GET', 'POST'],
+        origin: '*',
+        optionsSuccessStatus: 200
+    })
     try {
         const userCollection = await getCollection('user')
 
