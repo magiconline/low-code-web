@@ -13,7 +13,8 @@ async function connectToDatabase() {
     const db = client.db('lowcode');
 
     collections = {
-        'user': db.collection('user')
+        'user': db.collection('user'),
+        'page': db.collection('page')
     }
 
     console.log(`Successfully connected to database: ${db.databaseName}`);
