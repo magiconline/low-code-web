@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     res.json({
                         'code': 0,
                         'msg': "OK",
-                        'page': {}
+                        'page': result.page
                     })
                 } else {
                     res.json({

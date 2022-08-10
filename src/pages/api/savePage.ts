@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
+import { ObjectId } from 'mongodb';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -21,10 +22,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const result = await pageCollection.updateOne(
                     {
                         userID: userID,
-                        _id: pageID
+                        _id: new ObjectId(pageID)
                     },
                     {
-                        page: page
+                        $set: {
+                            page: page
+                        }
                     }
                 )
                 if (result.matchedCount === 0) {
