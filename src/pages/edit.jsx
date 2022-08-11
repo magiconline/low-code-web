@@ -3,9 +3,9 @@ import { EditorHeader } from "../components/editorHeader";
 import { EditorMain } from "../components/editorMain";
 import { useRouter } from "next/router";
 import { getPageInfo } from "../utilts/api";
+// import '../styles/edit.scss'
 
-
-export default function () {
+export default function Edit() {
 
     // 路由参数
     const router = useRouter()
@@ -13,26 +13,30 @@ export default function () {
 
     // 状态
     // Container页面信息，供渲染和后端使用
-    const [pageInfo, setPageInfo] = useState()
+    const [pageInfo, setPageInfo] = useState(null)
     // Container页面预览大小
-    const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 })
+    const [canvasSize, setCanvasSize] = useState({ width: 800, height: 1000 })
 
     // 异步加载页面信息
-    useEffect(async () => {
-        try {
-            const pageInfo = await getPageInfo(userID, pageID)
-            setPageInfo(pageInfo)
-        } catch (e) {
-            alert(e)
+    useEffect(() => {
+        async function fecthData() {
+            try {
+                const pageInfo = await getPageInfo(userID, pageID)
+                setPageInfo(pageInfo)
+            } catch (e) {
+                alert(e)
+            }
         }
+        fecthData()
     }, [])
+
 
     if (pageInfo) {
         // 加载成功
         return (
             <div className="editor-wrapper">
-                <EditorHeader props={{ pageInfo, setPageInfo, canvasSize, setCanvasSize }} />
-                <EditorMain props={{ pageInfo, setPageInfo, canvasSize }} />
+                <EditorHeader pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} />
+                <EditorMain pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} />
             </div>
         )
     } else {

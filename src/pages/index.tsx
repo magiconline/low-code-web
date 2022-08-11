@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
     const router = useRouter()
-    let userID: string
+    let userID: string, pageID: string
+
     return (
         <div className={styles.container}>
             <Head>
@@ -18,8 +19,8 @@ const Home: NextPage = () => {
             <main className={styles.main}>
                 <button type='button' onClick={() => {
                     router.push({
-                        pathname: '/home',
-                        query: { userID }
+                        pathname: '/edit',
+                        query: { userID, pageID }
                     })
                 }}
                 >

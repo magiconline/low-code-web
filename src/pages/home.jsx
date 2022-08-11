@@ -1,11 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-export default function () {
+export default function Home() {
     const router = useRouter()
     const { userID } = router.query
 
     return (
-        <div>home</div>
+        <p>{`/home?userID=${userID}`}</p>
     )
 }

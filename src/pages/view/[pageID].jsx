@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 
-// 
-export function View() {
+
+export default function View() {
     const router = useRouter()
     const { pageID } = router.query
 
     return (
-        <div></div>
+        <div>{`/view/${pageID}`}</div>
     )
 }

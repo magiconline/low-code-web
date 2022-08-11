@@ -4,7 +4,7 @@ import { getCollection } from '../../utilts/database';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
-        methods: ['GET', 'POST'],
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
         origin: '*',
         optionsSuccessStatus: 200
     })
@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         const pageCollection = await getCollection('page')
 
-        if (req.method === 'GET') {
+        if (req.method === 'POST') {
             const userID = req.body['userID']
 
             if (userID) {

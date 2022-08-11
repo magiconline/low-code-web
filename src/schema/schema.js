@@ -4,7 +4,7 @@ class Component {
         this.name = page.name
         this.type = page.type
         this.props = page.props
-        this.children = page.children.map((p) => Component(p))
+        this.children = page.children.map((p) => new Component(p))
     }
 }
 
@@ -21,7 +21,8 @@ export class Page {
         this.version = res.version
         this.url = res.url
         this.name = res.name
-        this.variables = res.variables.map((v) => Variable(v))
-        this.page = Component(res.page)
+        this.maxID = res.maxID
+        this.variables = res.variables.map((v) => new Variable(v))
+        this.page = new Component(res.page)
     }
 }

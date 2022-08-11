@@ -4,7 +4,7 @@ import { getCollection } from '../../utilts/database';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
-        methods: ['GET', 'POST'],
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
         origin: '*',
         optionsSuccessStatus: 200
     })

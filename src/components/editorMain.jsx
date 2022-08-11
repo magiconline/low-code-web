@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentList } from "./componentList";
 import { Container } from "./container";
 import { Editor } from "./editor";
@@ -10,8 +10,8 @@ export function EditorMain({ pageInfo, setPageInfo, canvasSize }) {
     return (
         <div className='editor-main'>
             <ComponentList />
-            <Container props={{ setSelectComponent, pageInfo, canvasSize }} />
-            <Editor props={{ selectComponent, pageInfo, setPageInfo }} />
+            <Container setSelectComponent={setSelectComponent} pageInfo={pageInfo} canvasSize={canvasSize} />
+            <Editor selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} />
         </div>
     )
 }

@@ -76,58 +76,39 @@
 
 // export default registerConfig;
 
-export default {
-    'text': {
-        label: '文本',
-        preview: () => '预览文本',
-        render: ({ text }) => <div style={{ width: '100%', height: '100%', }}>{text}</div>,
-        type: 'text',
+export default [
+    {
+        type: 'p',
         props: {
-            text: '渲染文本',
+            style: {
+                color: 'black',
+                backgroundColor: 'white'
+            },
         },
-        style: {
-            width: 100,
-            height: 34,
-            color: 'black',
-            backgroundColor: 'white'
-        },
+        children: [
+            '预览文本',
+        ]
     },
-    'button': {
-        label: '按钮',
-        preview: () => <button>预览按钮</button>,
-        render: ({ text }) => <button style={{
-            width: '100%', height: '100%', color: '',
-            backgroundColor: ''
-        }}>{text}</button>,
+    {
         type: 'button',
         props: {
-            text: '渲染按钮',
+            type: 'button',
+            style: {
+                color: 'black',
+                backgroundColor: 'white'
+            },
         },
-        style: {
-            width: 100,
-            height: 34,
-            color: 'black',
-            backgroundColor: 'white'
-        },
+        children: [
+            '预览按钮',
+        ]
     },
-    'input': {
-        label: '输入框',
+    {
         type: 'input',
         props: {
-            text: '请输入文本',
+            value: '请输入文本',
+            style: {
+            }
         },
-        style: {
-            width: 200,
-            height: 20,
-        },
-        preview: () => <input placeholder="预览输入框" />,
-        render: ({ text }) => <input
-            style={{
-                width: '100%',
-                height: '100%',
-                color: '',
-                backgroundColor: ''
-            }}
-            value={text} />
+
     }
-}
+]
