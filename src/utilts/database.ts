@@ -5,7 +5,7 @@ let collections: {
 } = {}
 
 async function connectToDatabase() {
-    const uri = "mongodb+srv://test_user:test123456@cluster0.um9hs.mongodb.net/?retryWrites=true&w=majority";
+    const uri = "";
     const client = new MongoClient(uri);
 
     await client.connect();
