@@ -3,7 +3,7 @@ import { EditorHeader } from "../components/editorHeader";
 import { EditorMain } from "../components/editorMain";
 import { useRouter } from "next/router";
 import { getPageInfo } from "../utilts/api";
-// import '../styles/edit.scss'
+
 
 export default function Edit() {
 

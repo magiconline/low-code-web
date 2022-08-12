@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { ComponentList } from "./componentList";
 import { Container } from "./container";
 import { Editor } from "./editor";
-
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 export function EditorMain({ pageInfo, setPageInfo, canvasSize }) {
     // Container页面中被选择的组件id，供editor编辑
     const [selectComponent, setSelectComponent] = useState(null)
 
     return (
         <div className='editor-main'>
-            <ComponentList />
-            <Container setSelectComponent={setSelectComponent} pageInfo={pageInfo} canvasSize={canvasSize} />
+            <DndProvider backend={HTML5Backend}>
+                <ComponentList />
+                <Container setSelectComponent={setSelectComponent} pageInfo={pageInfo} canvasSize={canvasSize} />
+            </DndProvider>
+
             <Editor selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} />
         </div>
     )

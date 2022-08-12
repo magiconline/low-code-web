@@ -7,10 +7,9 @@ function findComponentByID(page, id) {
 export function Editor({ selectComponent, pageInfo, setPageInfo }) {
     if (selectComponent) {
         let componentInfo = findComponentByID(pageInfo.page, selectComponent)
-        let variables = pageInfo.variables
+
         return (
             <div className="editor-right">
-                right
                 <div className="setter-tabs-list">
 
                 </div>

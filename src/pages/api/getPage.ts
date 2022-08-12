@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
 import { ObjectId } from 'mongodb';
+import { defaultPage, Page } from '../../schema/schema'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -35,7 +36,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         'msg': '参数错误，不存在的userID或pageID'
                     })
                 }
-
+            } else if (userID === undefined && pageID === undefined) {
+                // 测试用空白页面
+                res.json({
+                    code: 0,
+                    msg: '测试数据',
+                    page: defaultPage
+                })
             } else {
                 // 参数错误
                 res.json({

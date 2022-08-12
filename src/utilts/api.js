@@ -2,45 +2,30 @@
 
 import { Page } from "../schema/schema"
 
-export async function getPageInfo(userID, pageID, fake = false) {
-    if (fake) {
-        return new Page({
-            version: 1,
-            url: '/view/test',
-            name: '测试页面',
-            maxID: 1,
-            variables: [
-
-            ],
-            page: {
-                id: 1,
-                name: '根组件',
-                type: 'div',
-                props: {},
-                children: []
-            }
-        })
-    } else {
-        return await fetch('https://lowcode.fly.dev/api/getPage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                pageID, userID
-            })
-        }
-        ).then((response) => {
-            if (response.ok)
-                return response.json()
-            else
-                throw response.status
-        }).then((result) => {
-            if (result.code === 0) {
-                return new Page(result.page)
-            } else {
-                throw result.msg
-            }
+// 读取页面信息
+// 传空参数可得到模板页面信息
+export async function getPageInfo(userID, pageID) {
+    // const url = 'https://lowcode.fly.dev/api/getPage' // 远程url
+    const url = '/api/getPage' // 本地url
+    return await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            pageID, userID
         })
     }
+    ).then((response) => {
+        if (response.ok)
+            return response.json()
+        else
+            throw response.status
+    }).then((result) => {
+        if (result.code === 0) {
+            return new Page(result.page)
+        } else {
+            throw result.msg
+        }
+    })
 }

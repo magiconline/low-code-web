@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 // const createEditorConfig = () => {
 //     /* componentList: 存储了一个个物料组件的集合，用于渲染编辑器左侧物料的数据源；
 //     componentMap: 是一个 map 映射关系，根据 type 字段进行映射，
@@ -105,10 +106,24 @@ export default [
     {
         type: 'input',
         props: {
-            value: '请输入文本',
+            defaultValue: '请输入文本',
             style: {
             }
         },
+        children: [
 
+        ]
+    },
+    {
+        type: 'div',
+        props: {
+            style: {
+
+            }
+        },
+        children: [
+            '占位符'
+        ]
     }
+
 ]
