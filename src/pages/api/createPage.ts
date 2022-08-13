@@ -1,8 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection, newSession } from '../../utilts/database';
-import { defaultPage } from '../../schema/schema';
+import { Page } from '../../schema/schema';
 import { ObjectId } from 'mongodb';
+
+// 存储与解析pageCollection版本
+const VERSION = 1;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -27,10 +30,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             if (userID && pageName) {
 
-                // TODO 先在user中添加pageID，再在page中创建模板
-                // 如果没有注册则第一步报错 findOneAndUpdate $addToSet
-
-
                 // 尝试在user中添加pageID
                 const pageID = new ObjectId()
                 const result = await userCollection.updateOne({
@@ -44,11 +43,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 // 如果已创建userID, 且插入成功,则在pageCollection中插入
                 if (result.matchedCount === 1 && result.modifiedCount === 1) {
                     // userID与pageName有唯一索引，重名会异常
-                    const result = await pageCollection.insertOne({
-                        userID: userID,
-                        pageName: pageName,
-                        page: defaultPage
-                    }, { session })
+
+                    // 创建空Page
+                    const result = await pageCollection.insertOne(new Page({
+                        _id: pageID,
+                        userID: new ObjectId(userID),
+                        version: VERSION,
+                        name: pageName,
+                        maxID: 1,
+                        page: {
+                            type: 'div',
+                            props: {
+                                id: 1,
+                                name: '根组件',
+                                style: {
+                                    backgroundColor: "grey"
+                                }
+                            },
+                            children: [
+                                'hello world'
+                            ]
+                        }
+                    }), { session })
 
                     // 提交事务
                     await session.commitTransaction()
