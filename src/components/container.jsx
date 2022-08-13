@@ -1,11 +1,13 @@
 import React from "react";
-import { Component, DropComponent } from "./render";
+import { PreviewComponent } from "./render";
 
 export function Container({ setSelectComponent, pageInfo, canvasSize }) {
     return (
-        <section className='editor-container'>
-            <div id='canvas-container'>
-                <DropComponent {...pageInfo.page}></DropComponent>
+        <section className='editor-container' id={0} onClick={e => {
+            setSelectComponent(e.target.id)
+        }}>
+            <div className='canvas-container' id={0}>
+                <PreviewComponent {...pageInfo.page} ></PreviewComponent>
             </div>
 
         </section>

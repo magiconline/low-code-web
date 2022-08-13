@@ -2,8 +2,9 @@
 
 class Component {
     constructor(page) {
-        this.id = page.id // 组件id
-        this.name = page.name // 组件自定义名称，可编辑
+        // id与name放在props中
+        // this.id = page.id // 组件id
+        // this.name = page.name // 组件自定义名称，可编辑
         this.type = page.type // 组件类型
         this.props = page.props // 组件属性
 
@@ -61,10 +62,10 @@ const defaultPage = new Page({
     //     }
     // ],
     page: {
-        id: 1,
-        name: '根组件',
         type: 'div',
         props: {
+            id: 1,
+            name: '根组件',
             style: {
                 backgroundColor: "grey"
             }
@@ -72,10 +73,10 @@ const defaultPage = new Page({
         children: [
             'hello world',
             {
-                id: 2,
-                name: 'p组件',
                 type: 'p',
                 props: {
+                    id: 2,
+                    name: 'p组件',
                     style: {
                         color: 'white'
                     }

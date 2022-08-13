@@ -1,7 +1,8 @@
 import React from "react";
 import { useDrag, useDrop } from "react-dnd";
 
-// 根据页面信息递归渲染组件
+// 根据页面信息pageInfo递归渲染组件
+// 供预览使用，不添加额外功能
 function Component(props) {
     if (props.children.length > 0) {
         const children = props.children.map((child, index) => {
@@ -15,6 +16,24 @@ function Component(props) {
 
 }
 
+
+// 在Component基础上添加一层div，加入拖动事件
+// 在Container中使用
+function PreviewComponent({ onClick, ...props }) {
+    let children = []
+    if (props.children.length > 0) {
+        children = props.children.map((child, index) => {
+            return typeof child === 'string' ? child : <PreviewComponent key={index} {...child}></PreviewComponent>
+        })
+
+    }
+    return (
+        <div className="preview-component"  >
+            {React.createElement(props.type, props.props, children)}
+        </div>
+
+    )
+}
 // 渲染可拖动组件
 function DragComponent(props) {
     const [{ isDragging }, drag] = useDrag(() => ({
@@ -49,14 +68,12 @@ function DropComponent(props) {
     }))
 
     return (
-        <div ref={drop}>
-            <Component {...props}></Component>
+        <div ref={drop} className='drop-component' onClick={(e) => alert(e.currentTarget)}>
+            <Component {...props} ></Component>
         </div>
     )
 }
 
-function DragDropComponent(props) {
 
-}
 
-export { Component, DragComponent, DropComponent, DragDropComponent }
+export { Component, DragComponent, DropComponent, PreviewComponent }
