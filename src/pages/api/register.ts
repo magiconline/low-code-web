@@ -21,7 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const result = await userCollection.insertOne({
                     username: username,
                     phone: phone,
-                    password: password
+                    password: password,
+                    pages: <any>[]
                 })
 
                 res.json({
