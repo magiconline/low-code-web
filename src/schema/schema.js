@@ -1,5 +1,7 @@
 // 页面信息存储结构
 
+import { ObjectId } from "mongodb"
+
 class Component {
     constructor(page) {
         // id与name放在props中
@@ -31,6 +33,8 @@ class Variable {
 
 class Page {
     constructor(res) {
+        this.pageID = res._id // 数据库主键
+        this.userID = res.userID // userID 与 name 有唯一联合索引，确保不重名
         this.version = res.version // 版本，不同的版本对应不同的渲染和解析方法
         // 不需要记录url，使用pageID或数据库主键即可
         // this.url = res.url 
@@ -45,6 +49,8 @@ class Page {
 
 // 模板页面信息
 const defaultPage = new Page({
+    _id: new ObjectId(), // 每次import后运行一次，重复使用会有相同的_id！
+    userID: 'testUserID',   // 应为12位16进制字符串，可能会有错误
     version: 1,
     name: '测试页面',
     maxID: 2,

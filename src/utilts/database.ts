@@ -1,27 +1,5 @@
 import { Collection, MongoClient, ObjectId } from 'mongodb'
 
-// 数据模型
-export class Page {
-    constructor(
-        public _id: ObjectId,
-        public userID: string,
-        public pageName: string,
-        public page: Object
-    ) { }
-}
-
-export class User {
-    constructor(
-        public _id: ObjectId,
-        public username: string,
-        public phone: string,
-        public password: string,
-        public pages: Array<ObjectId>
-    ) { }
-}
-
-
-
 let collections: {
     [key: string]: Collection
 } = {}
