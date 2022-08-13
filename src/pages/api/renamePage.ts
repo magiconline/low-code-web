@@ -4,7 +4,7 @@ import NextCors from 'nextjs-cors';
 import { ObjectId } from 'mongodb';
 
 
-// 将pagename更名
+// 将pageName更名
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
         methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === 'POST') {
         try {
-            const { userID, pageID, name } = req.body
+            const { userID, pageID, pageName } = req.body
             const pageCollection = await getCollection('page')
             const userCollection = await getCollection('user')
 
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             _id: new ObjectId(pageID)
                         }, {
                             $set: {
-                                pageName: name
+                                pageName: pageName
                             }
                         }).then(
                             result => {

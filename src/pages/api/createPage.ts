@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const pageCollection = await getCollection('page')
             const userCollection = await getCollection('user')
 
-            const pageName = req.body['name']
+            const pageName = req.body['pageName']
             const userID = req.body['userID']
 
             if (userID && pageName) {
@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         _id: pageID,
                         userID: new ObjectId(userID),
                         version: VERSION,
-                        name: pageName,
+                        pageName: pageName,
                         maxID: 1,
                         page: {
                             type: 'div',
@@ -103,7 +103,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (message.startsWith('E11000 duplicate key error collection')) {
                 res.json({
                     code: 3,
-                    msg: 'name重复'
+                    msg: 'pageName重复'
                 })
             } else {
                 // 未知错误

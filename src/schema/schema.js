@@ -34,11 +34,11 @@ class Variable {
 class Page {
     constructor(res) {
         this.pageID = res._id // 数据库主键
-        this.userID = res.userID // userID 与 name 有唯一联合索引，确保不重名
+        this.userID = res.userID // userID 与 pageName 有唯一联合索引，确保不重名
         this.version = res.version // 版本，不同的版本对应不同的渲染和解析方法
         // 不需要记录url，使用pageID或数据库主键即可
         // this.url = res.url 
-        this.name = res.name // 页面名称，供管理页面中显示
+        this.pageName = res.pageName // 页面名称，供管理页面中显示
         this.maxID = res.maxID // 记录最大组件id，新组件id自动+1
         // 暂时不需要全局变量和函数
         // this.variables = res.variables.map((v) => new Variable(v))
@@ -52,7 +52,7 @@ const defaultPage = new Page({
     _id: new ObjectId(), // 每次import后运行一次，重复使用会有相同的_id！
     userID: 'testUserID',   // 应为12位16进制字符串，可能会有错误
     version: 1,
-    name: '测试页面',
+    pageName: '测试页面',
     maxID: 2,
     // variables: [
     //     {
