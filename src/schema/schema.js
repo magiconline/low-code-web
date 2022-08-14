@@ -1,7 +1,4 @@
 // 页面信息存储结构
-
-import { ObjectId } from "mongodb"
-
 class Component {
     constructor(page) {
         // id与name放在props中
@@ -49,7 +46,7 @@ class Page {
 
 // 模板页面信息
 const defaultPage = new Page({
-    _id: new ObjectId(), // 每次import后运行一次，重复使用会有相同的_id！
+    _id: '1234567890ab', // 每次import后运行一次，重复使用会有相同的_id！
     userID: 'testUserID',   // 应为12位16进制字符串，可能会有错误
     version: 1,
     pageName: '测试页面',
