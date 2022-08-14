@@ -17,22 +17,32 @@ function Component(props) {
 }
 
 
-// 在Component基础上添加一层div，加入拖动事件
+// 在Component基础上添加一层div, 加入拖动事件, 选中突出显示
 // 在Container中使用
-function PreviewComponent({ onClick, ...props }) {
+function PreviewComponent({ selectComponent, ...props }) {
     let children = []
     if (props.children.length > 0) {
         children = props.children.map((child, index) => {
-            return typeof child === 'string' ? child : <PreviewComponent key={index} {...child}></PreviewComponent>
+            return typeof child === 'string' ? child : <PreviewComponent key={index} {...child} selectComponent={selectComponent}></PreviewComponent>
         })
 
     }
-    return (
-        <div className="preview-component"  >
-            {React.createElement(props.type, props.props, children)}
-        </div>
+    if (selectComponent == props.props.id) {
+        // 通过切换className突出显示
+        return (
+            <div className="preview-component-click" >
+                {React.createElement(props.type, props.props, children)}
+            </div>
+        )
+    } else {
+        return (
+            <div className="preview-component"  >
+                {React.createElement(props.type, props.props, children)}
+            </div>
 
-    )
+        )
+    }
+
 }
 // 渲染可拖动组件
 function DragComponent(props) {

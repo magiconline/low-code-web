@@ -14,7 +14,7 @@ export function EditorMain({ pageInfo, setPageInfo, canvasSize }) {
         <div className='editor-main'>
             <DndProvider backend={HTML5Backend}>
                 <ComponentList />
-                <Container setSelectComponent={setSelectComponent} pageInfo={pageInfo} canvasSize={canvasSize} />
+                <Container selectComponent={selectComponent} setSelectComponent={setSelectComponent} pageInfo={pageInfo} canvasSize={canvasSize} />
             </DndProvider>
 
             <Editor selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} />
