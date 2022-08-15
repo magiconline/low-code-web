@@ -22,17 +22,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 })
 
                 if (result) {
-                    // 已注册
+                    // 已注册且密码正确
                     res.json({
                         'code': 0,
                         'msg': '登陆成功',
                         'userID': result._id
                     })
                 } else {
-                    // 未注册
+                    // 未注册或密码错误
                     res.json({
                         'code': 1,
-                        'msg': '手机号未注册'
+                        'msg': '手机号或密码错误'
                     })
                 }
             } else {
