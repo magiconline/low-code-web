@@ -2,6 +2,7 @@
 
 import React from "react";
 import componentList from '../schema/components'
+import { deepCopy } from "../utilts/clone";
 
 // 根据页面信息pageInfo递归渲染组件
 // 供预览使用，不添加额外功能
@@ -23,7 +24,6 @@ function Component(props) {
 // 在Container中使用
 function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPageInfo, ...props }) {
     // TODO 元组周围添加margin
-
     console.assert(typeof selectComponent === 'number')
 
     // 开始拖动时添加组件id和类型
@@ -34,16 +34,16 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         e.stopPropagation()
     }
 
-    // TODO 参考：再hover中根据坐标实时判断添加到target上面还是下面
-
     // 拖拽经过释放区域
     const handle_dragOver = (e) => {
         e.preventDefault()
         e.dataTransfer.dropEffect = 'move'
     }
 
+    // TODO 参考：再hover中根据坐标实时判断添加到target上面还是下面
+
     // 在pageInfo.page中根据id查找组件
-    const findComponentByID = (id, page = pageInfo.page) => {
+    const findComponentByID = (id, page) => {
         if (typeof page === 'string' || !page)
             return false
 
@@ -62,7 +62,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     }
 
     // 遍历page删除id对应的组件，返回新组件
-    function removeComponentByID(ID, page = pageInfo.page) {
+    function removeComponentByID(ID, page) {
         if (typeof page === 'string') {
             // 字符串结点直接返回
             return page
@@ -85,7 +85,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     }
 
     // 将component插入page中id=parentID的组件的children中，返回修改后的page
-    // TODO bug 添加时其他的组件id会变化
     function addToChildren(component, parentID, page) {
         if (typeof page === 'string') {
             return page
@@ -101,17 +100,17 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     }
 
     // 在pageInfo中将ID对应的组件移动至parentID内
-    function moveToChildren(ID, parentID) {
+    function moveToChildren(ID, parentID, page) {
         // 找到要移动的组件
         // TODO: bug 将父div拖到子div中应该报错！！！ 
-        const component = findComponentByID(ID)
+        const component = findComponentByID(ID, page)
         if (component === false) {
             console.log('不存在的组件id:', ID)
             return pageInfo
         }
 
         // 删除要移动的组件得到newPage
-        const newPage = removeComponentByID(ID)
+        const newPage = removeComponentByID(ID, page)
 
         // 在parentID组件children中push结点
         return addToChildren(component, parentID, newPage)
@@ -148,7 +147,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         e.preventDefault()
         e.stopPropagation() // 避免触发两次
 
-        // TODO bug: 只有根组件会触发onDragStart
         const dragID = parseInt(e.dataTransfer.getData('component/id'))
         const dragType = e.dataTransfer.getData('component/type')
         const dropID = parseInt(e.target.id)
@@ -161,7 +159,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         console.log(e)
 
         if (dragID) {
-            // 移动组件
+            // dragID存在，移动组件
 
             // 不需要移动
             if (dragID === dropID) {
@@ -171,10 +169,9 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
             if (dropType === 'div') {
                 // 如果目标容器可嵌套(div)，则向children push
                 let newPageInfo = pageInfo
-                newPageInfo.page = moveToChildren(dragID, dropID)
+                newPageInfo.page = moveToChildren(dragID, dropID, newPageInfo.page)
                 setPageInfo({ ...newPageInfo })
-                // console.log('更新pageInfo')
-                // console.log(newPageInfo)
+
             } else {
                 // TODO 如果目标不可嵌套，则根据y轴坐标判断在上面还是下面添加
                 // TODO 如果是水平布局则比较x轴
@@ -184,12 +181,12 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
                 console.log(offset)
 
                 let newPageInfo = pageInfo
-                let parentID = findParentID(dropID, pageInfo.page)
-                newPageInfo.page = moveToChildren(dragID, parentID)
+                let parentID = findParentID(dropID, newPageInfo.page)
+                newPageInfo.page = moveToChildren(dragID, parentID, newPageInfo.page)
                 setPageInfo({ ...newPageInfo })
             }
         } else {
-            // 添加组件
+            // dragID不存在，新建组件
 
             let newPageInfo = pageInfo
             newPageInfo.maxID += 1
@@ -197,17 +194,20 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
 
             for (let index in componentList) {
                 if (componentList[index].type === dragType) {
-                    component = componentList[index]
+                    // 直接赋值bug，所有相同类型的组件使用同一个page的引用
+                    // 需要深拷贝新建component
+                    // component = componentList[index]
+                    component = deepCopy(componentList[index])
+                    component.props.id = newPageInfo.maxID
                     break
                 }
             }
-            component.props.id = newPageInfo.maxID
-            console.log(component.props.id)
+
+
             if (dropType === 'div') {
                 // 如果目标容器可嵌套(div)，则向children push
                 newPageInfo.page = addToChildren(component, dropID, newPageInfo.page)
 
-                // TODO bug 添加组建后其他同级组件id相同
             } else {
                 // 寻找父节点，向其孩子插入
                 // 如果目标不可嵌套，则根据y轴坐标判断在上面还是下面添加
@@ -220,7 +220,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
             }
 
             setPageInfo({ ...newPageInfo })
-            console.log(newPageInfo.maxID)
         }
 
         // 避免冒泡
@@ -238,7 +237,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         children = props.children.map((child, index) => {
             return typeof child === 'string' ? child : <PreviewComponent key={index} {...child} pageInfo={pageInfo} setPageInfo={setPageInfo} selectComponent={selectComponent} setSelectComponent={setSelectComponent}></PreviewComponent>
         })
-
     }
 
     // 通过切换className高亮被选中的组件
