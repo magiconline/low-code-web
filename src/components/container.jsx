@@ -1,16 +1,20 @@
 import React from "react";
 import { PreviewComponent } from "./render";
 
-export function Container({ selectComponent, setSelectComponent, pageInfo, canvasSize }) {
+export function Container({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize }) {
     return (
-        <section className='editor-container' id={0}
+        <div className='editor-container' id={0} style={{ display: "flex" }}
             onClick={e => {
-                setSelectComponent(e.target.id)
+                setSelectComponent(parseInt(e.target.id))
             }}>
-            <div className='canvas-container' id={0}>
-                <PreviewComponent {...pageInfo.page} selectComponent={selectComponent}></PreviewComponent>
+            <div className='canvas-container' style={{
+                width: `${canvasSize.width}px`,
+                height: `${canvasSize.height}px`,
+                backgroundColor: 'white'
+            }}>
+                <PreviewComponent {...pageInfo.page} selectComponent={selectComponent} setSelectComponent={setSelectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo}></PreviewComponent>
             </div>
 
-        </section>
+        </div>
     )
 }

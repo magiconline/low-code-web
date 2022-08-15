@@ -7,7 +7,7 @@ export function ComponentList() {
         <section className='editor-left'>
             {
                 componentList.map((component, index) =>
-                    <div key={index}>
+                    <div key={index} style={{ marginBottom: '30px' }}>
                         <DragComponent key={index} {...component}></DragComponent>
                         <p>{component.type}</p>
                     </div>

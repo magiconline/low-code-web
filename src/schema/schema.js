@@ -30,7 +30,7 @@ class Variable {
 
 class Page {
     constructor(res) {
-        this.pageID = res._id // 数据库主键
+        this.pageID = res.pageID // 数据库主键
         this.userID = res.userID // userID 与 pageName 有唯一联合索引，确保不重名
         this.version = res.version // 版本，不同的版本对应不同的渲染和解析方法
         // 不需要记录url，使用pageID或数据库主键即可
@@ -46,11 +46,11 @@ class Page {
 
 // 模板页面信息
 const defaultPage = new Page({
-    _id: '1234567890ab', // 每次import后运行一次，重复使用会有相同的_id！
+    pageID: '1234567890ab',
     userID: 'testUserID',   // 应为12位16进制字符串，可能会有错误
     version: 1,
     pageName: '测试页面',
-    maxID: 2,
+    maxID: 5,
     // variables: [
     //     {
     //         name: 'testVariable',
@@ -70,7 +70,7 @@ const defaultPage = new Page({
             id: 1,
             name: '根组件',
             style: {
-                backgroundColor: "grey"
+                backgroundColor: "white"
             }
         },
         children: [
@@ -81,11 +81,50 @@ const defaultPage = new Page({
                     id: 2,
                     name: 'p组件',
                     style: {
-                        color: 'white'
+                        color: 'black'
                     }
                 },
                 children: [
-                    '你好'
+                    '你好1'
+                ]
+            }, {
+                type: 'p',
+                props: {
+                    id: 3,
+                    name: 'p组件',
+                    style: {
+                        color: 'black'
+                    }
+                },
+                children: [
+                    '你好2'
+                ]
+            }, {
+                type: 'div',
+                props: {
+                    id: 4,
+                    name: 'div1',
+                    style: {
+                        border: '2px solid black',
+                        height: '40px',
+
+                    }
+                },
+                children: [
+
+                ]
+            }, {
+                type: 'div',
+                props: {
+                    id: 5,
+                    name: 'div2',
+                    style: {
+                        border: '2px solid black',
+                        height: '40px',
+                    }
+                },
+                children: [
+
                 ]
             }
         ]

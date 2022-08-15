@@ -24,10 +24,11 @@ export default function Edit() {
                 const pageInfo = await getPageInfo(userID, pageID)
                 setPageInfo(pageInfo)
             } catch (e) {
-                alert(e)
+                console.log(e)
             }
         }
         fecthData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
