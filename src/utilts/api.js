@@ -4,7 +4,7 @@ import { Page } from "../schema/schema"
 
 // 读取页面信息
 // 传空参数可得到模板页面信息
-export async function getPageInfo(userID, pageID) {
+export async function getPageInfo(pageID) {
     // const url = 'https://lowcode.fly.dev/api/getPage' // 远程url
     const url = '/api/getPage' // 本地url
     return await fetch(url, {
@@ -13,7 +13,7 @@ export async function getPageInfo(userID, pageID) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            pageID, userID
+            pageID
         })
     }
     ).then((response) => {

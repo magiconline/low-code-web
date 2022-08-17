@@ -21,7 +21,7 @@ export default function Edit() {
     useEffect(() => {
         async function fecthData() {
             try {
-                const pageInfo = await getPageInfo(userID, pageID)
+                const pageInfo = await getPageInfo(pageID)
                 setPageInfo(pageInfo)
             } catch (e) {
                 console.log(e)
