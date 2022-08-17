@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
 import { ObjectId } from 'mongodb';
-import { defaultPage, Page } from '../../schema/schema'
+import { defaultPage } from '../../schema/schema'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -15,20 +15,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const pageCollection = await getCollection('page')
 
         if (req.method === 'POST') {
-            const userID = req.body['userID']
             const pageID = req.body['pageID']
 
-            if (userID && pageID) {
+            if (pageID) {
                 const result = await pageCollection.findOne({
                     _id: new ObjectId(pageID),
-                    userID: userID
                 })
 
                 if (result) {
                     res.json({
                         'code': 0,
                         'msg': "OK",
-                        'page': result.page
+                        'page': result // TODO 确定pageInfo格式后再调整
                     })
                 } else {
                     res.json({
@@ -36,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         'msg': '参数错误，不存在的userID或pageID'
                     })
                 }
-            } else if (userID === undefined && pageID === undefined) {
+            } else if (pageID === undefined) {
                 // 测试用空白页面
                 res.json({
                     code: 0,

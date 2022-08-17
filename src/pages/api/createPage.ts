@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection, newSession } from '../../utilts/database';
-import { Page } from '../../schema/schema';
 import { ObjectId } from 'mongodb';
 
 // 存储与解析pageCollection版本
@@ -45,8 +44,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     // userID与pageName有唯一索引，重名会异常
 
                     // 创建空Page
-                    const result = await pageCollection.insertOne(new Page({
-                        _id: pageID,
+                    const result = await pageCollection.insertOne({
+                        _id: pageID, // 存储时pageID转为_id
                         userID: new ObjectId(userID),
                         version: VERSION,
                         pageName: pageName,
@@ -64,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 'hello world'
                             ]
                         }
-                    }), { session })
+                    }, { session })
 
                     // 提交事务
                     await session.commitTransaction()
@@ -83,8 +82,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         msg: 'userID不存在',
                     })
                 }
-
-
 
             } else {
                 await session.abortTransaction()
@@ -112,8 +109,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     'msg': message
                 })
             }
-
-
 
         } finally {
             await session.endSession()
