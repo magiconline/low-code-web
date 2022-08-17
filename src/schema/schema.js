@@ -105,8 +105,8 @@ const defaultPage = new Page({
                     id: 4,
                     name: 'div1',
                     style: {
-                        border: '2px solid black',
-                        height: '40px',
+                        // border: '2px solid black',
+                        // height: '40px',
 
                     }
                 },
@@ -119,8 +119,8 @@ const defaultPage = new Page({
                     id: 5,
                     name: 'div2',
                     style: {
-                        border: '2px solid black',
-                        height: '40px',
+                        // border: '2px solid black',
+                        // height: '40px',
                     }
                 },
                 children: [

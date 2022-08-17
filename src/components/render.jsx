@@ -4,6 +4,7 @@ import React from "react";
 import componentList from '../schema/components'
 import { deepCopy } from "../utilts/clone";
 
+
 // 根据页面信息pageInfo递归渲染组件
 // 供预览使用，不添加额外功能
 function Component(props) {
@@ -257,13 +258,28 @@ function DragComponent(props) {
     function handle_dragStart(e) {
         e.dataTransfer.setData('component/type', props.type)
     }
+    // const styleLeft = {
+    //     border: '1px solid #BFC3F2', 
+    //     borderRadius:'4px', 
+    //     userSelect: 'none',
+    //     textAlign:'center',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     height:'30px',
+    //     color:'#000CF5',
+    //     fontFamily:'Geneva',
+    //     cursor:'-webkit-grab',
+        
+    // }
+    
+    
     return (
-        <div draggable onDragStart={handle_dragStart} style={{ border: '2px solid black', userSelect: 'none' }}>
-            <Component {...props}></Component>
+        <div draggable onDragStart={handle_dragStart}>
+            
+            <div>{props.props.name}</div>
+            {/*<Component {...props}></Component>
+            <Component {...props}></Component> */}
         </div>
     )
-
 }
-
-
 export { Component, DragComponent, PreviewComponent }
