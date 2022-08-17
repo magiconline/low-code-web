@@ -82,7 +82,6 @@ export default [
     {
         type: 'p',
         props: {
-            id: '1',
             name: '<p>',
             style: {
                 backgroundColor: 'white'
@@ -95,7 +94,6 @@ export default [
     {
         type: 'span',
         props: {
-            id: '1',
             name: '<span>',
             style: {
                 backgroundColor: 'white'
@@ -108,7 +106,6 @@ export default [
     {
         type: 'button',
         props: {
-            id: '2',
             name: '<button>',
             type: 'button',
             style: {
@@ -133,7 +130,6 @@ export default [
     {
         type: 'input',
         props: {
-            id: '3',
             name: '<input>',
             value: '请输入文本',
             style: {
@@ -147,7 +143,6 @@ export default [
         type: 'textarea',
 
         props: {
-            id: '4',
             name: '<textarea>',
             value: 'nihao',
             style: {
@@ -162,7 +157,6 @@ export default [
         type: 'div',
 
         props: {
-            id: '4',
             name: '<div>',
             style: {
 
@@ -177,7 +171,6 @@ export default [
         type: 'h1',
 
         props: {
-            id: '4',
             name: '<h1>',
             style: {
 
@@ -191,14 +184,11 @@ export default [
 
     {
         type: 'a',
-
         props: {
-            id: '5',
             name: '<a>',
             label: '链接',
             href: 'https://www.bilibili.com/',
             style: {
-
                 cursor: 'point',
                 // textDecoration: 'none',
             }
@@ -211,13 +201,13 @@ export default [
     {
         type: 'img',
         props: {
-            id: '6',
             name: '<img>',
             label: '图片',
-            width: '100px',
-            height: '100px',
+            width: '100%',
             alt: '',
-            src: 'https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png',
+            
+            // src: 'https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png',
+            src: '/img/logo.png',
             style: {
 
             }
@@ -228,23 +218,19 @@ export default [
     },
 
     {
-        type: 'Video',
+        type: 'video',
 
         props: {
-            id: '7',
             name: '<video>',
-            src: 'https://vd4.bdstatic.com/mda-nh87vrwi4z3hgrgk/sc/cae_h264/1660024254019108091/mda-nh87vrwi4z3hgrgk.mp4?v_from_s=hkapp-haokan-suzhou&auth_key=1660196534-0-0-3cf340a1f8cb766209cedc9885fa7066&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=0734308748&vid=18439501752691043225&abtest=103742_3-103890_2-103579_2&klogid=0734308748',
             label: '视频',
-            alt: '',
+            controls:'controls',
+            src: 'https://pic.oh4k.com/spdiy/wp-content/uploads/2022/08/20220809-mGFGRn.mp4',
             style: {
-                width: '140px',
-                height: '30px'
-
+                width: '100%',
             }
+
         },
         children: [
-            '视频',
-
         ]
     },
 
