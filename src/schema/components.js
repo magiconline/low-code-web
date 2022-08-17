@@ -82,8 +82,8 @@ export default [
     {
         type: 'p',
         props: {
-            id:'1',
-            name:'<p>',
+            id: '1',
+            name: '<p>',
             style: {
                 backgroundColor: 'white'
             },
@@ -95,8 +95,8 @@ export default [
     {
         type: 'span',
         props: {
-            id:'1',
-            name:'<span>',
+            id: '1',
+            name: '<span>',
             style: {
                 backgroundColor: 'white'
             },
@@ -108,20 +108,20 @@ export default [
     {
         type: 'button',
         props: {
-            id:'2',
-            name:'<button>',
+            id: '2',
+            name: '<button>',
             type: 'button',
             style: {
-                cursor:'point',
+                cursor: 'point',
                 color: 'white',
                 backgroundColor: 'white',
-                width:'100px',
-                height:'30px',
-                borderWidth:'1px',
-                backgroundColor:'#3b91fa',
-                borderColor:'blue',
-                borderRadius:'5px',
-                fontWeight:'bold'
+                width: '100px',
+                height: '30px',
+                borderWidth: '1px',
+                backgroundColor: '#3b91fa',
+                borderColor: 'blue',
+                borderRadius: '5px',
+                fontWeight: 'bold'
 
 
             },
@@ -133,8 +133,8 @@ export default [
     {
         type: 'input',
         props: {
-            id:'3',
-            name:'<input>',
+            id: '3',
+            name: '<input>',
             value: '请输入文本',
             style: {
             }
@@ -145,61 +145,61 @@ export default [
     },
     {
         type: 'textarea',
-        
+
         props: {
-            id:'4',
-            name:'<textarea>',
-            value:'nihao',
+            id: '4',
+            name: '<textarea>',
+            value: 'nihao',
             style: {
 
             }
         },
         children: [
-            
+
         ]
     },
     {
         type: 'div',
-        
+
         props: {
-            id:'4',
-            name:'<div>',
+            id: '4',
+            name: '<div>',
             style: {
 
             }
         },
         children: [
             'div'
-            
+
         ]
     },
     {
         type: 'h1',
-        
+
         props: {
-            id:'4',
-            name:'<h1>',
+            id: '4',
+            name: '<h1>',
             style: {
 
             }
         },
         children: [
             'H1'
-            
+
         ]
     },
 
     {
         type: 'a',
-        
+
         props: {
-            id:'5',
-            name:'<a>',
-            label:'链接',
-            href:'https://www.bilibili.com/',
+            id: '5',
+            name: '<a>',
+            label: '链接',
+            href: 'https://www.bilibili.com/',
             style: {
 
-                cursor:'point',
+                cursor: 'point',
                 // textDecoration: 'none',
             }
         },
@@ -209,36 +209,36 @@ export default [
         ]
     },
     {
-        type: 'Image',
+        type: 'img',
         props: {
-            id:'6',
-            name:'<img>',
-            label:'图片',
-            width:'100',
-            height:'100',
-            alt:'',
-            src:'https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png',
+            id: '6',
+            name: '<img>',
+            label: '图片',
+            width: '100px',
+            height: '100px',
+            alt: '',
+            src: 'https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png',
             style: {
 
             }
         },
         children: [
-            'img'
-                ]
+
+        ]
     },
 
     {
         type: 'Video',
-        
+
         props: {
-            id:'7',
-            name:'<video>',
-            src:'https://vd4.bdstatic.com/mda-nh87vrwi4z3hgrgk/sc/cae_h264/1660024254019108091/mda-nh87vrwi4z3hgrgk.mp4?v_from_s=hkapp-haokan-suzhou&auth_key=1660196534-0-0-3cf340a1f8cb766209cedc9885fa7066&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=0734308748&vid=18439501752691043225&abtest=103742_3-103890_2-103579_2&klogid=0734308748',
-            label:'视频',
-            alt:'',
+            id: '7',
+            name: '<video>',
+            src: 'https://vd4.bdstatic.com/mda-nh87vrwi4z3hgrgk/sc/cae_h264/1660024254019108091/mda-nh87vrwi4z3hgrgk.mp4?v_from_s=hkapp-haokan-suzhou&auth_key=1660196534-0-0-3cf340a1f8cb766209cedc9885fa7066&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=0734308748&vid=18439501752691043225&abtest=103742_3-103890_2-103579_2&klogid=0734308748',
+            label: '视频',
+            alt: '',
             style: {
-                width:'140px',
-                height:'30px'
+                width: '140px',
+                height: '30px'
 
             }
         },

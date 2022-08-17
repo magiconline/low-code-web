@@ -4,7 +4,6 @@ import React from "react";
 import componentList from '../schema/components'
 import { deepCopy } from "../utilts/clone";
 
-
 // 根据页面信息pageInfo递归渲染组件
 // 供预览使用，不添加额外功能
 function Component(props) {
@@ -139,10 +138,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
 
     }
 
-    function insertToChildren() {
-
-    }
-
     // 释放
     function handle_drop(e) {
         e.preventDefault()
@@ -240,15 +235,30 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         })
     }
 
+    // img标签不能传children参数
     // 通过切换className高亮被选中的组件
-    return React.createElement(props.type, {
-        ...props.props,
-        className: selectComponent === props.props.id ? "preview-component-click" : "preview-component",
-        draggable: true,
-        onDragStart: handle_dragStart,
-        onDragOver: handle_dragOver,
-        onDrop: handle_drop
-    }, children)
+    if (children.length !== 0) {
+
+        return React.createElement(props.type, {
+            ...props.props,
+            className: selectComponent === props.props.id ? "preview-component-click" : "preview-component",
+            draggable: true,
+            onDragStart: handle_dragStart,
+            onDragOver: handle_dragOver,
+            onDrop: handle_drop
+        }, children)
+    } else {
+        return React.createElement(props.type, {
+            ...props.props,
+            className: selectComponent === props.props.id ? "preview-component-click" : "preview-component",
+            draggable: true,
+            onDragStart: handle_dragStart,
+            onDragOver: handle_dragOver,
+            onDrop: handle_drop
+        })
+    }
+
+
 
 }
 
@@ -269,13 +279,13 @@ function DragComponent(props) {
     //     color:'#000CF5',
     //     fontFamily:'Geneva',
     //     cursor:'-webkit-grab',
-        
+
     // }
-    
-    
+
+
     return (
         <div draggable onDragStart={handle_dragStart}>
-            
+
             <div>{props.props.name}</div>
             {/*<Component {...props}></Component>
             <Component {...props}></Component> */}
