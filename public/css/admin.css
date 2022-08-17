@@ -1,0 +1,33 @@
+.logo_add{
+    height: 60px;
+    border-bottom: #C0C0C0 2px solid
+}
+
+.logo_add img{
+	height:50px;
+	position: absolute;
+	left:5px;
+	top:5px;
+}
+.logo_add .add{
+    position: absolute;
+	right:60px;
+	top:5px;
+}
+.logo_add .back{
+    position: absolute;
+	right:5px;
+	top:5px;
+}
+.table{
+    height: 670px;
+    width: 100%;
+    display: table;
+}
+.cell{
+    font-size: xx-large;
+    font-weight: 100;
+    display:table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
