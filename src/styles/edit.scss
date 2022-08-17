@@ -37,6 +37,11 @@
             padding-right:20px;
             background-color: rgb(252, 252, 255);
 
+            .editor-left-layout,.editor-left-text,.editor-left-multimedia{
+                border-bottom:1px solid #e0e1ea;
+                margin-bottom: 20px;
+            }
+
             .editor-left-item {
                 display: flex;
                 flex-wrap: wrap;
