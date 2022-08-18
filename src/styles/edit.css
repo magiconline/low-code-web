@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.editor-wrapper {
+  height: 100vh;
+  background: white;
+}
+
+.editor-wrapper .editor-header .editor-header-canvas {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.editor-wrapper .editor-header .editor-header-canvas * {
+  margin-right: 10px;
+}
+
+.editor-wrapper .editor-main {
+  height: calc(100vh - 64px);
+  position: relative;
+}
+
+.editor-wrapper .editor-main .editor-left {
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+  width: 200px;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fcfcff;
+}
+
+.editor-wrapper .editor-main .editor-left .editor-left-layout, .editor-wrapper .editor-main .editor-left .editor-left-text, .editor-wrapper .editor-main .editor-left .editor-left-multimedia {
+  border-bottom: 1px solid #e0e1ea;
+  margin-bottom: 20px;
+}
+
+.editor-wrapper .editor-main .editor-left .editor-left-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  border: 1.5px solid #BFC3F2;
+  border-radius: 4px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #fdfdff;
+  color: #000CF5;
+  font-family: Geneva;
+  cursor: grab;
+}
+
+.editor-wrapper .editor-main .editor-left .editor-left-item:hover {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  border: 1.5px solid #000CF5;
+  border-radius: 4px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: Geneva;
+  cursor: grab;
+  box-shadow: 0px 0px 10px 4px rgba(36, 24, 213, 0.1);
+}
+
+.editor-wrapper .editor-main .editor-left .editor-left-item .list {
+  width: 45%;
+  height: 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+  padding: 2px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-wrapper .editor-main .editor-right {
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+  width: 262px;
+  right: 0;
+  top: 0;
+  background-color: white;
+}
+
+.editor-wrapper .editor-main .editor-right .setter-tabs-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.editor-wrapper .editor-main .editor-right .setter-tabs-list .setter-tabs {
+  transition: all .5s;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #efefef;
+  width: 40%;
+  text-align: center;
+  color: #999;
+}
+
+.editor-wrapper .editor-main .editor-right .setter-tabs-list .setter-tabs .setter-tab {
+  width: 80%;
+  line-height: 25px;
+}
+
+.editor-wrapper .editor-main .editor-right .setter-tabs-list .setter-tabs .setter-tab-active {
+  color: black;
+  box-shadow: 1px 1px 3px 0px #a5d6ff;
+  border-radius: 15px;
+}
+
+.editor-wrapper .editor-main .editor-right .setter-tabs-list .setter-tabs-active {
+  border-bottom: 2px solid navy;
+}
+
+.editor-wrapper .editor-main .editor-container {
+  margin-left: 200px;
+  margin-right: 262px;
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+  background: whitesmoke;
+}
+
+.editor-wrapper .editor-main .editor-container .editor-line-x {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed #1890ff;
+}
+
+.editor-wrapper .editor-main .editor-container .editor-line-y {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed #1890ff;
+}
+
+.editor-wrapper .editor-main .editor-container #canvas-container {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: white;
+}
+
+.preview-component-click {
+  border: 1px dashed #9a9fff;
+}
+
+.canvas-container {
+  border: 1px dashed #9a9fff;
+  margin: auto;
+  margin-top: 0;
+}
