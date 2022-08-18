@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             // TODO 区分userID未注册这种情况
             if (userID) {
                 const result = pageCollection.find({
-                    userID: userID
+                    userID: new ObjectId(userID)
                 })
                 let pages: { pageID: string; pageName: string; }[] = []
                 await result.forEach((e) => {
