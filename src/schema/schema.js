@@ -74,7 +74,6 @@ const defaultPage = new Page({
             }
         },
         children: [
-            'hello world',
             {
                 type: 'p',
                 props: {
@@ -111,7 +110,7 @@ const defaultPage = new Page({
                     }
                 },
                 children: [
-
+                  'div1'
                 ]
             }, {
                 type: 'div',
@@ -124,7 +123,7 @@ const defaultPage = new Page({
                     }
                 },
                 children: [
-
+                  'div2'
                 ]
             }
         ]

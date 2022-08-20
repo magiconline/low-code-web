@@ -1,0 +1,41 @@
+.editorCenter {
+  margin-left: 200px;
+  margin-right: 262px;
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+  background: whitesmoke;
+
+  .canvasCenter {
+    width: auto;
+    height: 100%;
+
+    .canvasField {
+      min-height: 35px;
+      outline: 2px dashed #a09ec8;
+      outline-offset: -1px;
+      // box-sizing: border-box;
+      margin: 5px;
+      padding: 5px;
+
+      &:hover {
+        display: flex;
+        flex-wrap: wrap;
+        height: 20px;
+        padding: 10px;
+        outline: 3px solid #000CF5;
+        border-radius: 4px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        font-family: Geneva;
+        cursor: grab;
+        box-shadow: 0px 0px 10px 4px rgba(36, 24, 213, 0.1);
+  
+      }
+    }
+
+  }
+
+}
