@@ -2,7 +2,7 @@ import React from "react";
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 import StyleSetter from "./StyleSetter";
-
+import style from './index.module.scss'
 
 const { TabPane } = Tabs;
 
@@ -10,7 +10,7 @@ export default function Editor({ selectComponent, pageInfo, setPageInfo }) {
     // 右侧属性配置
     if (selectComponent) {
         return (
-            <div className="editor-right">
+            <div className={style.editorRight}>
                 {/* <div className="setter-tabs-list"> */}
                 <Tabs className="tabs-list" centered defaultActiveKey="1">
                     <TabPane tab="样式" key="1">
