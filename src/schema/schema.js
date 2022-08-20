@@ -45,7 +45,7 @@ class Page {
 }
 
 // 模板页面信息
-const defaultPage = new Page({
+const defaultPage = {
     pageID: '1234567890ab',
     userID: 'testUserID',   // 应为12位16进制字符串，可能会有错误
     version: 1,
@@ -110,7 +110,7 @@ const defaultPage = new Page({
                     }
                 },
                 children: [
-                  'div1'
+                    'div1'
                 ]
             }, {
                 type: 'div',
@@ -123,11 +123,11 @@ const defaultPage = new Page({
                     }
                 },
                 children: [
-                  'div2'
+                    'div2'
                 ]
             }
         ]
     }
-})
+}
 
 export { Page, defaultPage }

@@ -1,4 +1,4 @@
-import { Collection, MongoClient, ObjectId } from 'mongodb'
+import { Collection, MongoClient } from 'mongodb'
 
 let collections: {
     [key: string]: Collection
@@ -26,14 +26,14 @@ async function connectToDatabase() {
 
 }
 
-connectToDatabase()
+// connectToDatabase()
 
 async function getCollection(collection: string) {
-    if (collections[collection]) {
-        return collections[collection]
-    } else {
-        throw new Error('数据库连接中，请稍后再试')
+    if (!collections[collection]) {
+        await connectToDatabase()
     }
+
+    return collections[collection]
 }
 
 // 开启新事务
