@@ -24,7 +24,7 @@ export async function getPageInfo(pageID) {
             throw response.status
     }).then((result) => {
         if (result.code === 0) {
-            return new Page(result.page)
+            return result.page
         } else {
             throw result.msg
         }
