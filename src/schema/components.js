@@ -1,82 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
-// const createEditorConfig = () => {
-//     /* componentList: 存储了一个个物料组件的集合，用于渲染编辑器左侧物料的数据源；
-//     componentMap: 是一个 map 映射关系，根据 type 字段进行映射，
-//     有了它，就可以在画布中通过 Schema 数据去匹配物料组件来渲染画布视图。 */
-
-//     const componentList = []; // 自定义组件（物料）
-//     const componentMap = {}; // 组件和画布中元素的渲染映射
-
-//     return {
-//         componentList,
-//         componentMap,
-//         register: (component) => {
-//             componentList.push(component);
-//             componentMap[component.type] = component;
-//         }
-//     }
-// }
-
-// const registerConfig = createEditorConfig();
-
-// registerConfig.register({
-//     label: '文本',
-//     preview: () => '预览文本',
-//     render: ({ text }) => <div style={{ width: '100%', height: '100%', }}>{text}</div>,
-//     type: 'text',
-//     props: {
-//         text: '渲染文本',
-//     },
-//     style: {
-//         width: 100,
-//         height: 34,
-//         color: 'black',
-//         backgroundColor: 'white'
-//     },
-// });
-
-// registerConfig.register({
-//     label: '按钮',
-//     preview: () => <button>预览按钮</button>,
-//     render: ({ text }) => <button style={{
-//         width: '100%', height: '100%', color: '',
-//         backgroundColor: ''
-//     }}>{text}</button>,
-//     type: 'button',
-//     props: {
-//         text: '渲染按钮',
-//     },
-//     style: {
-//         width: 100,
-//         height: 34,
-//         color: 'black',
-//         backgroundColor: 'white'
-//     },
-// });
-
-// registerConfig.register({
-//     label: '输入框',
-//     type: 'input',
-//     props: {
-//         text: '请输入文本',
-//     },
-//     style: {
-//         width: 200,
-//         height: 20,
-//     },
-//     preview: () => <input placeholder="预览输入框" />,
-//     render: ({ text }) => <input
-//         style={{
-//             width: '100%',
-//             height: '100%',
-//             color: '',
-//             backgroundColor: ''
-//         }}
-//         value={text} />
-// });
-
-// export default registerConfig;
-
+//此文件为画布渲染的依据，同文件夹下的另外三个类型component是负责左侧组件布局，不涉及画布渲染和右侧属性栏。
 
 export default [
     {
@@ -84,7 +6,13 @@ export default [
         props: {
             name: '<p>',
             style: {
-                backgroundColor: 'white'
+                width:'',
+                height:'',
+                backgroundColor:'',
+                color:'black',
+                fontSize:'16px',
+                fontWeight:'light',
+                textAlign:'left',
             },
         },
         children: [
@@ -96,7 +24,13 @@ export default [
         props: {
             name: '<span>',
             style: {
-                backgroundColor: 'white'
+                width:'',
+                height:'',
+                backgroundColor:'',
+                color:'black',
+                fontSize:'16px',
+                fontWeight:'light',
+                textAlign:'left',
             },
         },
         children: [
@@ -111,16 +45,14 @@ export default [
             style: {
                 cursor: 'point',
                 color: 'white',
-                backgroundColor: 'white',
                 width: '100px',
                 height: '30px',
                 borderWidth: '1px',
                 backgroundColor: '#3b91fa',
                 borderColor: 'blue',
                 borderRadius: '5px',
-                fontWeight: 'bold'
-
-
+                fontWeight: 'bold',
+                textAlign:'center',
             },
         },
         children: [
@@ -133,6 +65,11 @@ export default [
             name: '<input>',
             value: '请输入文本',
             style: {
+                width:'',
+                height:'',
+                borderColor:'grey',
+                borderWidth:'1px',
+                borderRadius:'4px',
             }
         },
         children: [
@@ -144,8 +81,13 @@ export default [
 
         props: {
             name: '<textarea>',
-            value: 'nihao',
+            value: '请输入段落',
             style: {
+                width:'200px',
+                height:'100px',
+                borderColor:'grey',
+                borderWidth:'1px',
+                borderRadius:'4px',
 
             }
         },
@@ -159,12 +101,26 @@ export default [
         props: {
             name: '<div>',
             style: {
+                boxSizing:'border-box',
+                margin:'0px',
+                padding:'0px',
+                position:'relative',
+                width:'',
+                height:'',
+                display:'flex',
+                flexDirection:'column',
+                flexWrap:'wrap',
+                justifyContent:'space-between',
+                alignItems:'center',
+                alignSelf:'',
+                zIndex:'',
+                backgroundColor:''
 
             }
         },
         children: [
             'div'
-
+        
         ]
     },
     {
@@ -173,6 +129,12 @@ export default [
         props: {
             name: '<h1>',
             style: {
+                backgroundColor:'',
+                color:'black',
+                backgroundColor: 'white',
+                fontWeight:'light',
+                textAlign:'left',
+
 
             }
         },
@@ -190,7 +152,11 @@ export default [
             href: 'https://www.bilibili.com/',
             style: {
                 cursor: 'point',
-                // textDecoration: 'none',
+                textDecoration: 'none',
+                color:'blue',
+                url:''
+                
+                
             }
         },
         children: [
@@ -203,12 +169,11 @@ export default [
         props: {
             name: '<img>',
             label: '图片',
-            width: '100%',
             alt: '',
-            
-            // src: 'https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png',
             src: '/img/logo.png',
             style: {
+                width:'200px',
+                height:''
 
             }
         },
@@ -226,7 +191,8 @@ export default [
             controls:'controls',
             src: 'https://pic.oh4k.com/spdiy/wp-content/uploads/2022/08/20220809-mGFGRn.mp4',
             style: {
-                width: '100%',
+                width:'200px',
+                height:''
             }
 
         },

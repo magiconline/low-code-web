@@ -4,7 +4,8 @@ export default [
         props: {
             name: '<p>',
             style: {
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+
             },
         },
         children: [
@@ -38,7 +39,7 @@ export default [
                 backgroundColor: '#3b91fa',
                 borderColor: 'blue',
                 borderRadius: '5px',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
 
 
             },
@@ -64,7 +65,7 @@ export default [
 
         props: {
             name: '<textarea>',
-            value: 'nihao',
+            value: '请输入文本',
             style: {
 
             }

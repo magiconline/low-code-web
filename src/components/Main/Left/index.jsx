@@ -28,11 +28,11 @@
 
 
 import React from "react"
-// import componentList from '../schema/components'
 import componentlayoutList from '../../../schema/components-layout'
 import componenttexttList from '../../../schema/components-text'
 import componentmultimediaList from '../../../schema/components-multimedia'
 import style from './index.module.scss'
+
 
 // import { DragComponent, Component } from "./render"
 
@@ -47,15 +47,13 @@ export default function Left() {
 
   return (
     <section className={style.editorLeft}>
-
-
-      <section className='editor-left-layout'>
+      <section className={style.editorLeftLayout}>
         <details open>
           <summary>布局</summary>
           {
             componentlayoutList.map((component, index) =>
 
-              <div className={style.editorLeftItem} key={index} style={{ margin: '20px' }}>
+              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
                 {/* <DragComponent key={index}{...component}></DragComponent> */}
                 <div
                   draggable
@@ -70,13 +68,14 @@ export default function Left() {
       </section>
 
 
-      <section className='editor-left-text'>
+      <section className={style.editorLeftText}>
         <details open>
-          <summary>文本</summary>
+          <summary>
+  
+            文本</summary>
           {
             componenttexttList.map((component, index) =>
-
-              <div className={style.editorLeftItem} key={index} style={{ margin: '20px' }}>
+              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
                 {/* <DragComponent key={index}{...component}></DragComponent> */}
                 <div
                   draggable
@@ -89,13 +88,13 @@ export default function Left() {
           }
         </details>
       </section>
-      <section className='editor-left-multimedia'>
+      <section className={style.editorLeftMultimedia}>
         <details open>
           <summary>多媒体</summary>
           {
             componentmultimediaList.map((component, index) =>
 
-              <div className={style.editorLeftItem} key={index} style={{ margin: '20px' }}>
+              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
                 {/* <DragComponent key={index}{...component}></DragComponent> */}
                 <div
                   draggable
@@ -111,4 +110,64 @@ export default function Left() {
 
     </section>
   )
+
+
+  // return (
+  //   <section className={style.editorLeft}>
+  //       <Collapse defaultActiveKey={['1','2','3']}>
+          
+  //           <Panel className={style.editorLeftLayout} header="布局组件" key="1">
+  //           {
+  //             componentlayoutList.map((component, index) =>
+
+  //               <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
+  //                 {/* <DragComponent key={index}{...component}></DragComponent> */}
+  //                 <div
+  //                   draggable
+  //                   onDragStart={(e) => handle_dragStart(e, component.type)}
+  //                 >
+  //                   {component.props.name}
+  //                 </div>
+  //               </div>
+  //             )
+  //           }
+  //           </Panel>
+          
+  //         <Panel className={style.editorLeftText} header="文本类组件" key="2">
+  //         {
+  //           componenttexttList.map((component, index) =>
+  //             <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
+  //               {/* <DragComponent key={index}{...component}></DragComponent> */}
+  //               <div
+  //                 draggable
+  //                 onDragStart={(e) => handle_dragStart(e, component.type)}
+  //               >
+  //                 {component.props.name}
+  //               </div>
+  //             </div>
+  //           )
+  //         }
+
+  //         </Panel>
+  //         <Panel className={style.editorLeftMultimedia} header="多媒体组件" key="3">
+  //         {
+  //           componentmultimediaList.map((component, index) =>
+
+  //             <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
+  //               {/* <DragComponent key={index}{...component}></DragComponent> */}
+  //               <div
+  //                 draggable
+  //                 onDragStart={(e) => handle_dragStart(e, component.type)}
+  //               >
+  //                 {component.props.name}
+  //               </div>
+  //             </div>
+  //           )
+  //         }
+
+  //         </Panel>
+  //       </Collapse>
+
+  //   </section>
+  // )
 }

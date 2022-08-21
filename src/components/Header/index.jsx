@@ -12,7 +12,7 @@ export function Header({ pageInfo, setPageInfo, canvasSize, setCanvasSize }) {
     <div className='editor-header'>
 
       <div className="editor-header-logo">
-        LowCode
+        <img src="/img/logo.png" height="40px"></img>
       </div>
 
       {/* 自定义画布大小 */}

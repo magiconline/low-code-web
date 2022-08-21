@@ -47,76 +47,6 @@
     position: relative;
     // display: flex;
 
-
-    .editor-left {
-      position: absolute;
-      height: 100%;
-      overflow: auto;
-      width: 200px;
-      left: 0;
-      top: 0;
-      padding-top: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      background-color: rgb(252, 252, 255);
-
-      .editor-left-layout,
-      .editor-left-text,
-      .editor-left-multimedia {
-        border-bottom: 1px solid #e0e1ea;
-        margin-bottom: 20px;
-      }
-
-      .editor-left-item {
-        display: flex;
-        flex-wrap: wrap;
-        // height:20px;
-        padding: 10px;
-        border: 1.5px solid #BFC3F2;
-        border-radius: 4px;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(253, 253, 255);
-        color: #000CF5;
-        font-family: Geneva;
-        cursor: grab;
-
-        &:hover {
-          display: flex;
-          flex-wrap: wrap;
-          // height:20px;
-          padding: 10px;
-          border: 1.5px solid #000CF5;
-          border-radius: 4px;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-          background-color: rgb(255, 255, 255);
-          font-family: Geneva;
-          cursor: grab;
-          box-shadow: 0px 0px 10px 4px rgba(36, 24, 213, 0.1);
-
-        }
-
-
-        .list {
-          width: 45%;
-          height: 40px;
-          border: 1px solid #ddd;
-          // cursor: -webkit-grab;
-          // cursor: grab;
-          margin-bottom: 10px;
-          text-align: center;
-          color: #333;
-          padding: 2px 5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-    }
-
     .editor-right {
       position: absolute;
       height: 100%;
@@ -236,7 +166,7 @@
 
 .canvas-field {
   min-height: 35px;
-  outline: 2px dashed #a09ec8;
+  outline: 1px dashed #a09ec8;
   outline-offset: -1px;
   // box-sizing: border-box;
   margin: 5px;
@@ -247,13 +177,13 @@
     // flex-wrap: wrap;
     // height: 20px;
     // padding: 10px;
-    outline: 3px solid #000CF5;
+    outline: 2px solid #000CF5;
     border-radius: 4px;
     // text-align: center;
     // justify-content: center;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    font-family: Geneva;
+    // font-family: Geneva;
     cursor: grab;
     box-shadow: 0px 0px 10px 4px rgba(36, 24, 213, 0.1);
 

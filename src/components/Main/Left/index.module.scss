@@ -1,3 +1,4 @@
+
 .editorLeft {
   position: absolute;
   height: 100%;
@@ -5,18 +6,35 @@
   width: 200px;
   left: 0;
   top: 0;
-  padding-top: 10px;
-  // padding-left:20px;
-  // padding-right:20px;
   background-color: rgb(252, 252, 255);
 
+  .editorLeftLayout, .editorLeftText, .editorLeftMultimedia{
+    margin-bottom: 2px;
+      details{
+        border:1px solid #dee0fe;
+          summary{
+            color:#000CF5;
+            direction: ltr;
+            padding:2px 8px;
+            height:28px;
+            background-color: #eff2ff;
+
+            &::marker{
+              font-size:10px;
+              direction:ltr;
+              color:#000CF5;
+            }
+          }
+      }
+
+    }
+  
   .editorLeftItem {
     display: flex;
     flex-wrap: wrap;
-    height: 20px;
-    padding: 10px;
+    height: 32px;
     border: 1.5px solid #BFC3F2;
-    border-radius: 4px;
+    border-radius: 8px;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -28,10 +46,9 @@
     &:hover {
       display: flex;
       flex-wrap: wrap;
-      height: 20px;
-      padding: 10px;
-      border: 1.5px solid #000CF5;
-      border-radius: 4px;
+      height: 32px;
+      border: 2px solid #000CF5;
+      border-radius: 8px;
       text-align: center;
       justify-content: center;
       align-items: center;
@@ -45,7 +62,7 @@
 
     .list {
       width: 45%;
-      height: 40px;
+     height: 40px;
       border: 1px solid #ddd;
       // cursor: -webkit-grab;
       // cursor: grab;
