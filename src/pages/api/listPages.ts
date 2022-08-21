@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (req.method === 'POST') {
             const userID = req.body['userID']
 
-            // TODO 区分userID未注册这种情况
             if (userID) {
                 const result = pageCollection.find({
                     userID: new ObjectId(userID)

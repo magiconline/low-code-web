@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
@@ -18,8 +19,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             if (userID && pageID) {
                 const result = await pageCollection.deleteOne({
-                    userID: userID,
-                    _id: pageID
+                    userID: new ObjectId(userID),
+                    _id: new ObjectId(pageID)
                 })
 
                 if (result.deletedCount === 0) {

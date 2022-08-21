@@ -14,22 +14,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const pageCollection = await getCollection('page')
 
         if (req.method === 'POST') {
-            const pageID = req.body['pageID']
-            const userID = req.body['userID']
-            const page = req.body['page']
+            let page = req.body['page']
 
-            if (userID && pageID && page) {
+            if (page) {
+                page._id = new ObjectId(page.pageID)
+                page.userID = new ObjectId(page.userID)
+                delete page.pageID
+
                 const result = await pageCollection.updateOne(
                     {
-                        userID: userID,
-                        _id: new ObjectId(pageID)
+                        userID: page.userID,
+                        _id: page._id
                     },
                     {
-                        $set: {
-                            page: page
-                        }
+                        $set: page
                     }
                 )
+
                 if (result.matchedCount === 0) {
                     res.json({
                         'code': 1,
@@ -48,8 +49,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     'msg': '参数错误'
                 })
             }
-
-
         } else {
             // 错误的方法
             res.status(404)
