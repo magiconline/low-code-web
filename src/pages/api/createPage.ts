@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
-import { getCollection, newSession } from '../../utilts/database';
+import { getCollection } from '../../utilts/database';
 import { ObjectId } from 'mongodb';
 
 // 存储与解析pageCollection版本
@@ -14,13 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     if (req.method === 'POST') {
-        // 开启事务
-        const session = newSession()
-
 
         try {
-            session.startTransaction()
-
             const pageCollection = await getCollection('page')
             const userCollection = await getCollection('user')
 
@@ -31,16 +26,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 // 尝试在user中添加pageID
                 const pageID = new ObjectId()
-                const result = await userCollection.updateOne({
+                const result = await userCollection.findOne({
                     _id: new ObjectId(userID)
-                }, {
-                    $push: {
-                        pages: pageID
-                    }
-                }, { session })
+                })
 
                 // 如果已创建userID, 且插入成功,则在pageCollection中插入
-                if (result.matchedCount === 1 && result.modifiedCount === 1) {
+                if (result) {
                     // userID与pageName有唯一索引，重名会异常
 
                     // 创建空Page
@@ -63,10 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 'hello world'
                             ]
                         }
-                    }, { session })
-
-                    // 提交事务
-                    await session.commitTransaction()
+                    })
 
                     res.json({
                         'code': 0,
@@ -74,8 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         'pageID': result.insertedId
                     })
                 } else {
-                    // 回滚事务，将userCollection中新添加的pageID删除
-                    await session.abortTransaction()
+
 
                     res.json({
                         code: 2,
@@ -84,7 +71,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
 
             } else {
-                await session.abortTransaction()
                 // 参数错误
                 res.json({
                     'code': 1,
@@ -93,8 +79,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
 
         } catch (e) {
-            await session.abortTransaction()
-
             const { message } = e as Error
 
             if (message.startsWith('E11000 duplicate key error collection')) {
@@ -110,8 +94,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 })
             }
 
-        } finally {
-            await session.endSession()
         }
     } else {
         // 错误的方法

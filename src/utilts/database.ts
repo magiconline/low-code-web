@@ -36,9 +36,5 @@ async function getCollection(collection: string) {
     return collections[collection]
 }
 
-// 开启新事务
-function newSession() {
-    return client.startSession()
-}
 
-export { getCollection, newSession }
+export { getCollection }
