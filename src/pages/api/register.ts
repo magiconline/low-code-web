@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import { getCollection } from '../../utilts/database';
+import CryptoJS from 'crypto-js';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -21,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const result = await userCollection.insertOne({
                     username: username,
                     phone: phone,
-                    password: password,
+                    password: CryptoJS.MD5(password).toString(CryptoJS.enc.Utf8),
                     pages: <any>[]
                 })
 

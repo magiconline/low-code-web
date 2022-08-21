@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getCollection } from '../../utilts/database';
 import NextCors from 'nextjs-cors';
+import CryptoJS from 'crypto-js';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await NextCors(req, res, {
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (phone && password) {
                 const result = await userCollection.findOne({
                     phone: phone,
-                    password: password
+                    password: CryptoJS.MD5(password).toString(CryptoJS.enc.Utf8)
                 })
 
                 if (result) {
