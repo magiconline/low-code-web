@@ -18,6 +18,7 @@ export default function Edit() {
   const [pageInfo, setPageInfo] = useState(null)
   // Container页面预览大小
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 1000 })
+  const [selectComponent, setSelectComponent] = useState(0);
 
   // 异步加载页面信息
   useEffect(() => {
@@ -41,8 +42,10 @@ export default function Edit() {
         {/* <EditorHeader pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} /> */}
         {/* <EditorMain pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} /> */}
 
-        <Header pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} />
+        <Header selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} />
         <Main
+          selectComponent={selectComponent}
+          setSelectComponent={setSelectComponent}
           pageInfo={pageInfo}
           setPageInfo={setPageInfo}
           canvasSize={canvasSize}

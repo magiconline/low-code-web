@@ -5,9 +5,7 @@ import Right from './Right'
 import style from './index.module.scss'
 import Container from './Container';
 
-export default function Main({ pageInfo, setPageInfo, canvasSize }) {
-  const [selectComponent, setSelectComponent] = useState(0);
-
+export default function Main({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize }) {
   return (
     <div className={style.editorMain}>
       <Left />

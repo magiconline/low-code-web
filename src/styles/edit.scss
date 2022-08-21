@@ -8,38 +8,75 @@
   background: rgb(255, 255, 255);
 
   .editor-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    height: 48px;
-    margin-bottom: 3px;
-    padding: 0 10px;
-    width: 100%;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // align-items: center;
+    // background-color: #fff;
+    // height: 48px;
+    // margin-bottom: 3px;
+    // padding: 0 10px;
+    // width: 100%;
 
     .editor-header-logo {
+      display: inline-block;
       font-size: 1.5rem;
+      margin-right: 60px;
     }
 
-    .editor-header-button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
+    // .editor-header-button {
+    //   display: inline-flex;
+    //   justify-content: center;
+    //   align-items: center;
 
-      .button {
-        background-color: #cacbd4;
-        border-radius: 5px;
-        margin-right: 20px;
-        padding: 5px 10px;
-      }
-    }
+    //   .button {
+    //     background-color: #cacbd4;
+    //     border-radius: 5px;
+    //     margin-right: 20px;
+    //     padding: 5px 10px;
+    //   }
+    // }
 
     .editor-header-canvas {
       font-size: 1.2rem;
       text-align: center;
       margin-bottom: 10px;
     }
+
+
+    .editor-header-button {
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      background: #FFF;
+      border: 1px solid #DCDFE6;
+      color: #606266;
+      -webkit-appearance: none;
+      text-align: center;
+      box-sizing: border-box;
+      outline: 0;
+      margin: 0;
+      transition: .1s;
+      font-weight: 500;
+      padding: 12px 20px;
+      font-size: 14px;
+      border-radius: 4px;
+      margin: 5px;
+    }
+
+    .editor-header-button:active,
+    .editor-header-button:hover {
+      color: #409EFF;
+      border-color: #c6e2ff;
+      background-color: #ecf5ff;
+    }
+
+    .right {
+      float: right;
+      text-decoration: none;
+    }
+
   }
 
   .editor-main {
@@ -132,7 +169,7 @@
       }
 
 
-      
+
     }
   }
 }

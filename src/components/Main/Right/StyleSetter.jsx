@@ -47,7 +47,8 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
 
     let props = findComponentByID(pageInfo.page, selectComponent)
     if (props === false) {
-        throw Error(`未找到id: ${id}`)
+        // throw Error(`未找到id: ${id}`)
+        return false
     }
 
     return (
