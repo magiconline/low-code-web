@@ -5,32 +5,27 @@ import Right from './Right'
 import style from './index.module.scss'
 import Container from './Container';
 
-export default function Main({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize }) {
-  return (
-    <div className={style.editorMain}>
-      <Left />
+export default function Main({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize, editMode }) {
 
-      {/* <Center
-        selectComponent={selectComponent}
-        setSelectComponent={setSelectComponent}
-        pageInfo={pageInfo}
-        canvasSize={canvasSize} // 自定义画布大小
-        setPageInfo={setPageInfo}
-      /> */}
+    return (
+        <div className={style.editorMain}>
+            <Left />
 
-      <Container
-        selectComponent={selectComponent}
-        setSelectComponent={setSelectComponent}
-        pageInfo={pageInfo}
-        canvasSize={canvasSize} // 自定义画布大小
-        setPageInfo={setPageInfo}
-      />
+            <Container
+                selectComponent={selectComponent}
+                setSelectComponent={setSelectComponent}
+                pageInfo={pageInfo}
+                canvasSize={canvasSize} // 自定义画布大小
+                setPageInfo={setPageInfo}
+                editMode={editMode}
+            />
 
-      <Right
-        selectComponent={selectComponent}
-        pageInfo={pageInfo}
-        setPageInfo={setPageInfo}
-      />
-    </div>
-  )
+            <Right
+                selectComponent={selectComponent}
+                pageInfo={pageInfo}
+                setPageInfo={setPageInfo}
+            />
+        </div>
+    )
+
 }

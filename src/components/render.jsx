@@ -42,6 +42,8 @@ function Component(props) {
 
 // 在Component基础上添加一层div, 加入拖动事件, 选中突出显示
 // 在Container中使用
+// 禁止<a>超链接点击：css pointer-events:none
+// 不设置onXXX函数，
 function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPageInfo, ...props }) {
     // TODO 元组周围添加margin
     console.assert(typeof selectComponent === 'number')
@@ -258,12 +260,31 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         })
     }
 
+
+
+
+    // 编辑时删除组件onXXX函数
+    let newProps = {}
+    for (let key in props.props) {
+        console.log(`props.${key} = ${props.props[key]}`)
+        if (!key.startsWith('on')) {
+            newProps[key] = props.props[key]
+        }
+    }
+
+    // 编辑时禁用<a>点击效果
+    if (props.type === 'a') {
+        newProps.style['pointer-events'] = 'none'
+    }
+
+
+
     // img标签不能传children参数
     // 通过切换className高亮被选中的组件
     if (children.length !== 0) {
-
         return React.createElement(props.type, {
-            ...props.props,
+            // ...props.props,
+            ...newProps,
             className: selectComponent === props.props.id ? "preview-component-click" : "preview-component",
             draggable: true,
             onDragStart: handle_dragStart,
@@ -272,7 +293,8 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         }, children)
     } else {
         return React.createElement(props.type, {
-            ...props.props,
+            // ...props.props,
+            ...newProps,
             className: selectComponent === props.props.id ? "preview-component-click" : "preview-component",
             draggable: true,
             onDragStart: handle_dragStart,
