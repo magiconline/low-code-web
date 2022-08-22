@@ -114,7 +114,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
             page.children.push(component)
             return page
         } else {
-            page.children = page.children.map((child, index) => {
+            page.children = page.children.map((child) => {
                 return addToChildren(component, parentID, child)
             })
             return page
@@ -254,7 +254,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     if (props.children.length > 0) {
         children = props.children.map((child, index) => {
             return typeof child === 'string' ? child
-                : <div className="canvas-field" key={index}>
+                : <div className="canvas-field" key={index} id={child.props.id}>
                     <PreviewComponent  {...child} pageInfo={pageInfo} setPageInfo={setPageInfo} selectComponent={selectComponent} setSelectComponent={setSelectComponent}></PreviewComponent>
                 </div>
         })
@@ -266,7 +266,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     // 编辑时删除组件onXXX函数
     let newProps = {}
     for (let key in props.props) {
-        console.log(`props.${key} = ${props.props[key]}`)
+        // console.log(`props.${key} = ${props.props[key]}`)
         if (!key.startsWith('on')) {
             newProps[key] = props.props[key]
         }
