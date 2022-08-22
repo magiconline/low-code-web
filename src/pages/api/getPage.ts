@@ -16,10 +16,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         if (req.method === 'POST') {
             const pageID = req.body['pageID']
-
+            const userID = req.body['userID']
             if (pageID) {
                 const result = await pageCollection.findOne({
                     _id: new ObjectId(pageID),
+                    userID: new ObjectId(userID)
                 })
 
                 if (result) {

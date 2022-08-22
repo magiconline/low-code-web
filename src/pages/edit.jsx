@@ -9,55 +9,59 @@ import { Header } from "../components/Header";
 
 export default function Edit() {
 
-  // 路由参数
-  const router = useRouter()
-  const { userID, pageID } = router.query
+    // 路由参数
+    const router = useRouter()
+    const { userID, pageID } = router.query
 
-  // 状态
-  // Container页面信息，供渲染和后端使用
-  const [pageInfo, setPageInfo] = useState(null)
-  // Container页面预览大小
-  const [canvasSize, setCanvasSize] = useState({ width: 800, height: 1000 })
-  const [selectComponent, setSelectComponent] = useState(0);
+    // 状态
+    // Container页面信息，供渲染和后端使用
+    const [pageInfo, setPageInfo] = useState(null)
+    // Container页面预览大小
+    const [canvasSize, setCanvasSize] = useState({ width: 800, height: 1000 })
+    // 被选择高亮的组件
+    const [selectComponent, setSelectComponent] = useState(0);
+    // 切换编辑预览模式
+    const [editMode, setEditMode] = useState(true)
 
-  // 异步加载页面信息
-  useEffect(() => {
-    async function fecthData() {
-      try {
-        const pageInfo = await getPageInfo(pageID)
-        setPageInfo(pageInfo)
-      } catch (e) {
-        console.log(e)
-      }
+    // 异步加载页面信息
+    useEffect(() => {
+        async function fecthData() {
+            try {
+                const pageInfo = await getPageInfo(userID, pageID)
+                setPageInfo(pageInfo)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        fecthData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+    if (pageInfo) {
+        // 加载成功
+        return (
+            <div className="editor-wrapper">
+                {/* <EditorHeader pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} /> */}
+                {/* <EditorMain pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} /> */}
+
+                <Header selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} editMode={editMode} setEditMode={setEditMode} />
+                <Main
+                    selectComponent={selectComponent}
+                    setSelectComponent={setSelectComponent}
+                    pageInfo={pageInfo}
+                    setPageInfo={setPageInfo}
+                    canvasSize={canvasSize}
+                    editMode={editMode}
+                />
+            </div>
+        )
+    } else {
+        // 未加载
+        return (
+            <p>加载中</p>
+        )
     }
-    fecthData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-
-  if (pageInfo) {
-    // 加载成功
-    return (
-      <div className="editor-wrapper">
-        {/* <EditorHeader pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} /> */}
-        {/* <EditorMain pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} /> */}
-
-        <Header selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} />
-        <Main
-          selectComponent={selectComponent}
-          setSelectComponent={setSelectComponent}
-          pageInfo={pageInfo}
-          setPageInfo={setPageInfo}
-          canvasSize={canvasSize}
-        />
-      </div>
-    )
-  } else {
-    // 未加载
-    return (
-      <p>加载中</p>
-    )
-  }
 
 
 }
