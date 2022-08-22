@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     res.json({
                         'code': 0,
                         'msg': "OK",
-                        'page': result // TODO 确定pageInfo格式后再调整
+                        'page': result
                     })
                 } else {
                     res.json({

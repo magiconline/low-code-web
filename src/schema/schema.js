@@ -70,7 +70,10 @@ const defaultPage = {
             id: 1,
             name: '根组件',
             style: {
-                backgroundColor: "white"
+                backgroundColor: "white",
+                position: 'relative',
+                width: '100%',
+                height: '100%'
             }
         },
         children: [
@@ -130,4 +133,4 @@ const defaultPage = {
     }
 }
 
-export { Page, defaultPage }
+export { defaultPage }

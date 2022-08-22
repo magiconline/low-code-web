@@ -20,42 +20,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             // 检测userID与pageID是否合法
             await userCollection.findOne({
-                _id: new ObjectId(userID),
-                pages: { $elemMatch: { pageID: new ObjectId(pageID) } }
-            }).then(
-                async (result) => {
-                    if (result) {
-                        // 页面存在
-                        await pageCollection.updateOne({
-                            _id: new ObjectId(pageID)
-                        }, {
-                            $set: {
-                                pageName: pageName
-                            }
-                        }).then(
-                            result => {
-                                // 修改成功
-                                res.json({
-                                    code: 0,
-                                    msg: 'ok'
-                                })
-                            },
-                            err => {
-                                res.json({
-                                    code: 1,
-                                    msg: (err as Error).message
-                                })
-                            }
-                        )
-                    } else {
-                        // 页面不存在
-                        res.json({
-                            code: 3,
-                            msg: 'pageID或userID不存在'
-                        })
-                    }
+                _id: new ObjectId(userID)
+            }).then(async (result) => {
+                if (result) {
+                    // 页面存在
+                    await pageCollection.updateOne({
+                        _id: new ObjectId(pageID)
+                    }, {
+                        $set: {
+                            pageName: pageName
+                        }
+                    }).then(
+                        result => {
+                            // 修改成功
+                            res.json({
+                                code: 0,
+                                msg: 'ok'
+                            })
+                        },
+                        err => {
+                            res.json({
+                                code: 1,
+                                msg: (err as Error).message
+                            })
+                        }
+                    )
+                } else {
+                    // 页面不存在
+                    res.json({
+                        code: 3,
+                        msg: 'pageID或userID不存在'
+                    })
+                }
 
-                },
+            },
                 err => {
                     res.json({
                         code: 2,
