@@ -54,7 +54,8 @@ export default [
                 fontWeight: 'bold',
                 textAlign: 'center',
             },
-            onClick: `() => {alert('button clicked')}`
+            onClick: `(e) => {alert('button clicked')}`,
+            onDoubleClick: `(e) => {alert('button double clicked')}`
         },
         children: [
             '预览按钮',
@@ -71,7 +72,8 @@ export default [
                 borderColor: 'grey',
                 borderWidth: '1px',
                 borderRadius: '4px',
-            }
+            },
+            onChange: `(e) => {console.log(e)}`
         },
         children: [
 
@@ -90,7 +92,8 @@ export default [
                 borderWidth: '1px',
                 borderRadius: '4px',
 
-            }
+            },
+            onChange: `(e) => {console.log(e)}`
         },
         children: [
 
