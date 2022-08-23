@@ -180,12 +180,23 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         console.log(`drag ${dragID}/${dragType} into ${dropID}/${dropType}`)
         // console.log(e)
 
+        function isChildren(parentID, childID, page) {
+            let component = findComponentByID(parentID, page)
+            return findComponentByID(childID, component) !== false
+        }
+
         if (dragID) {
             // dragID存在，移动组件
 
+
             // 不需要移动
             if (dragID === dropID) {
-                return
+                return false
+            }
+
+            // 检查并禁止父节点向子节点拖动
+            if (isChildren(dragID, dropID, pageInfo.page)) {
+                return false
             }
 
             if (dropType === 'div') {
@@ -280,7 +291,10 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         newProps.style['pointer-events'] = 'none'
     }
 
-
+    // 编辑时禁用input 和 textarea标签输入功能（设置只读）
+    if (props.type === 'input' || props.type === 'textarea') {
+        newProps.readOnly = true
+    }
 
     // img标签不能传children参数
     // 通过切换className高亮被选中的组件
