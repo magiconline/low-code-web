@@ -7,16 +7,16 @@ export default [
             name: '<p>',
             style: {
 
-                width:'',
-                height:'',
-                color:'#000000',
-                fontSize:'16px',
-                fontWeight:'light',
-                fontStyle:'normal',
-                textAlign:'left',
-                textDecoration:'none',
-                flexWrap:'wrap',
-                zIndex:''
+                width: '',
+                height: '',
+                color: '#000000',
+                fontSize: '16px',
+                fontWeight: 'light',
+                fontStyle: 'normal',
+                textAlign: 'left',
+                textDecoration: 'none',
+                flexWrap: 'wrap',
+                zIndex: ''
 
 
             },
@@ -31,15 +31,15 @@ export default [
             name: '<span>',
             style: {
 
-                width:'',
-                height:'',
-                color:'#000000',
-                fontSize:'16px',
-                fontWeight:'light',
-                fontStyle:'normal',
-                textAlign:'left',
-                textDecoration:'none',
-                zIndex:''
+                width: '',
+                height: '',
+                color: '#000000',
+                fontSize: '16px',
+                fontWeight: 'light',
+                fontStyle: 'normal',
+                textAlign: 'left',
+                textDecoration: 'none',
+                zIndex: ''
 
             },
         },
@@ -52,19 +52,19 @@ export default [
         props: {
             name: '<button>',
             style: {
-                
+
                 cursor: 'pointer',
                 color: '#ffffff',
                 width: '100px',
                 height: '30px',
                 borderWidth: '0px',
-                borderStyle:'solid',
+                borderStyle: 'solid',
                 backgroundColor: '#000000',
                 borderColor: '#000000',
                 borderRadius: '6px',
                 fontWeight: 'bold',
-                textAlign:'center',
-                zIndex:''
+                textAlign: 'center',
+                zIndex: ''
             },
             onClick: `(e) => {alert('button clicked')}`,
             onDoubleClick: `(e) => {alert('button double clicked')}`
@@ -80,14 +80,14 @@ export default [
             defaultValue: '请输入文本',
             style: {
 
-                width:'',
-                height:'',
-                borderColor:'grey',
-                borderWidth:'1px',
-                borderRadius:'4px',
-                backgroundColor:'',
-                zIndex:''
-                
+                width: '',
+                height: '',
+                borderColor: 'grey',
+                borderWidth: '1px',
+                borderRadius: '4px',
+                backgroundColor: 'white',
+                zIndex: ''
+
             },
             onChange: `(e) => {console.log(e)}`
         },
@@ -102,13 +102,13 @@ export default [
             name: '<textarea>',
             defaultValue: '请输入段落',
             style: {
-                width:'200px',
-                height:'100px',
-                borderColor:'grey',
-                borderWidth:'1px',
-                borderRadius:'4px',
-                backgroundColor:'',
-                zIndex:''
+                width: '200px',
+                height: '100px',
+                borderColor: 'grey',
+                borderWidth: '1px',
+                borderRadius: '4px',
+                backgroundColor: '',
+                zIndex: ''
 
             },
             onChange: `(e) => {console.log(e)}`
@@ -125,21 +125,21 @@ export default [
             name: '<div>',
             style: {
 
-                boxSizing:'border-box',
-                margin:'0px',
-                padding:'0px',
-                position:'relative',
-                width:'',
-                height:'',
-                display:'flex',
-                flexDirection:'column',
-                flexWrap:'wrap',
-                justifyContent:'space-between',
-                alignItems:'center',
-                alignSelf:'center',
-                zIndex:'1',
-                backgroundColor:'#ffffff',
-                zIndex:''
+                boxSizing: 'border-box',
+                margin: '0px',
+                padding: '0px',
+                position: 'relative',
+                width: '',
+                height: '',
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                alignSelf: 'center',
+                zIndex: '1',
+                backgroundColor: '#ffffff',
+                zIndex: ''
 
 
             }
@@ -154,11 +154,11 @@ export default [
         props: {
             name: '<h>',
             style: {
-                color:'black',
-                textAlign:'left',
-                fontSize:'32px',
-                fontStyle:'normal',
-                zIndex:''
+                color: 'black',
+                textAlign: 'left',
+                fontSize: '32px',
+                fontStyle: 'normal',
+                zIndex: ''
             }
         },
         children: [
@@ -176,10 +176,10 @@ export default [
             style: {
                 cursor: 'pointer',
                 textDecoration: 'none',
-                fontStyle:'normal',
-                color:'blue',
-                zIndex:'',
-                pointerEvents:'auto',
+                fontStyle: 'normal',
+                color: 'blue',
+                zIndex: '',
+                pointerEvents: 'auto',
             }
         },
         children: [
@@ -196,9 +196,9 @@ export default [
             src: 'https://images.pexels.com/photos/9287901/pexels-photo-9287901.jpeg',
             // src: '/img/logo.png',
             style: {
-                width:'200px',
-                height:'',
-                zIndex:''
+                width: '200px',
+                height: '',
+                zIndex: ''
             }
         },
         children: [
@@ -215,9 +215,9 @@ export default [
             controls: 'controls',
             src: 'https://pic.oh4k.com/spdiy/wp-content/uploads/2022/08/20220809-mGFGRn.mp4',
             style: {
-                width:'200px',
-                height:'',
-                zIndex:''
+                width: '200px',
+                height: '',
+                zIndex: ''
             }
 
         },
