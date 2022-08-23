@@ -7,11 +7,15 @@ import { deepCopy } from "../utilts/clone";
 
 // 将字符串转换为函数
 function parse(str) {
-    return new Function(str)
+    if (typeof str === 'string') {
+        return new Function('return' + str)()
+    } else {
+        console.log(`函数转换错误: ${str} ${typeof str}`)
+    }
 }
 
 // 判断属性是否是函数
-function isFunction(key, value) {
+function isFunction(key) {
     // 假设所有事件属性都以on开头
     // 或者对应的value使用特殊前缀
     return key.startsWith('on')
@@ -21,9 +25,13 @@ function isFunction(key, value) {
 // 供预览使用，不添加额外功能
 function Component(props) {
     // 把props函数属性从字符串转为函数
+    // 不要直接修改props
+    let newProps = {}
     for (let key in props.props) {
-        if (isFunction(key, props.props.key)) {
-            props.props.key = parse(props.props.key)
+        if (isFunction(key)) {
+            newProps[key] = parse(props.props[key])
+        } else {
+            newProps[key] = props.props[key]
         }
     }
 
@@ -31,12 +39,11 @@ function Component(props) {
         const children = props.children.map((child, index) => {
             return typeof child === 'string' ? child : <Component key={index} {...child}></Component>
         })
-        return React.createElement(props.type, props.props, children
+        return React.createElement(props.type, newProps, children
         )
     } else {
-        return React.createElement(props.type, props.props)
+        return React.createElement(props.type, newProps)
     }
-
 }
 
 
@@ -45,7 +52,6 @@ function Component(props) {
 // 禁止<a>超链接点击：css pointer-events:none
 // 不设置onXXX函数，
 function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPageInfo, ...props }) {
-    // TODO 元组周围添加margin
     console.assert(typeof selectComponent === 'number')
 
     // 开始拖动时添加组件id和类型
@@ -62,7 +68,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         e.dataTransfer.dropEffect = 'move'
     }
 
-    // TODO 参考：再hover中根据坐标实时判断添加到target上面还是下面
 
     // 在pageInfo.page中根据id查找组件
     const findComponentByID = (id, page) => {
@@ -124,7 +129,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     // 在pageInfo中将ID对应的组件移动至parentID内
     function moveToChildren(ID, parentID, page) {
         // 找到要移动的组件
-        // TODO: bug 将父div拖到子div中应该报错！！！ 
         const component = findComponentByID(ID, page)
         if (component === false) {
             console.log('不存在的组件id:', ID)
@@ -174,7 +178,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         console.assert(typeof dropID === 'number')
 
         console.log(`drag ${dragID}/${dragType} into ${dropID}/${dropType}`)
-        console.log(e)
+        // console.log(e)
 
         if (dragID) {
             // dragID存在，移动组件
@@ -196,7 +200,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
                 // console.log('暂时不支持移动组件')
                 // e.target.offset为与editor-main相对像素
                 const offset = e.clientY >= (e.target.offsetTop + e.target.offsetHeight / 2) ? 1 : 0
-                console.log(offset)
+                // console.log(offset)
 
                 let newPageInfo = pageInfo
                 let parentID = findParentID(dropID, newPageInfo.page)
@@ -229,7 +233,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
             } else {
                 // 寻找父节点，向其孩子插入
                 // 如果目标不可嵌套，则根据y轴坐标判断在上面还是下面添加
-                // TODO：如果是水平布局则比较x轴
                 let parentID = findParentID(dropID, newPageInfo.page)
                 console.assert(parentID !== false)
 
@@ -267,7 +270,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     let newProps = {}
     for (let key in props.props) {
         // console.log(`props.${key} = ${props.props[key]}`)
-        if (!key.startsWith('on')) {
+        if (!isFunction(key)) {
             newProps[key] = props.props[key]
         }
     }
