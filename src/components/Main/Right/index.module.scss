@@ -1,9 +1,48 @@
 .editorRight {
   position: absolute;
   height: 100%;
+  padding:8px;
   overflow: auto;
-  width: 262px;
-  right: 0;
+  width: 18vw;
+  right: 12px;
   top: 0;
-  background-color: white;
+  background-color: rgb(252, 252, 255);
+
+  .setterItemLabel{
+    display:inline;
+    margin-bottom:10px;
+
+
+
+
+    .styleName{
+      color:#4c57cb;
+      font-size: 14px;
+    
+    }
+    .setterItem{
+      border: 1.5px solid #BFC3F2;
+      border-radius: 8px;
+      width:100%;
+      height:34px;
+      margin-top:2px;
+      margin-bottom:10px;
+      padding:4px;
+      font-size: 16px;
+
+      &:hover{
+        border: 3px solid #000CF5;
+      }
+      &::placeholder{
+        color:#BFC3F2;
+
+      }
+    }
+
+  }
+
+  
 }
+
+
+

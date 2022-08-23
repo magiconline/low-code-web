@@ -6,13 +6,19 @@ export default [
         props: {
             name: '<p>',
             style: {
-                width: '',
-                height: '',
-                backgroundColor: '',
-                color: 'black',
-                fontSize: '16px',
-                fontWeight: 'light',
-                textAlign: 'left',
+
+                width:'',
+                height:'',
+                color:'#000000',
+                fontSize:'16px',
+                fontWeight:'light',
+                fontStyle:'normal',
+                textAlign:'left',
+                textDecoration:'none',
+                flexWrap:'wrap',
+                zIndex:''
+
+
             },
         },
         children: [
@@ -24,13 +30,17 @@ export default [
         props: {
             name: '<span>',
             style: {
-                width: '',
-                height: '',
-                backgroundColor: '',
-                color: 'black',
-                fontSize: '16px',
-                fontWeight: 'light',
-                textAlign: 'left',
+
+                width:'',
+                height:'',
+                color:'#000000',
+                fontSize:'16px',
+                fontWeight:'light',
+                fontStyle:'normal',
+                textAlign:'left',
+                textDecoration:'none',
+                zIndex:''
+
             },
         },
         children: [
@@ -41,18 +51,20 @@ export default [
         type: 'button',
         props: {
             name: '<button>',
-            type: 'button',
             style: {
-                cursor: 'point',
-                color: 'white',
+                
+                cursor: 'pointer',
+                color: '#ffffff',
                 width: '100px',
                 height: '30px',
-                borderWidth: '1px',
-                backgroundColor: '#3b91fa',
-                borderColor: 'blue',
-                borderRadius: '5px',
+                borderWidth: '0px',
+                borderStyle:'solid',
+                backgroundColor: '#000000',
+                borderColor: '#000000',
+                borderRadius: '6px',
                 fontWeight: 'bold',
-                textAlign: 'center',
+                textAlign:'center',
+                zIndex:''
             },
             onClick: `(e) => {alert('button clicked')}`,
             onDoubleClick: `(e) => {alert('button double clicked')}`
@@ -65,13 +77,17 @@ export default [
         type: 'input',
         props: {
             name: '<input>',
-            value: '请输入文本',
+            defaultValue: '请输入文本',
             style: {
-                width: '',
-                height: '',
-                borderColor: 'grey',
-                borderWidth: '1px',
-                borderRadius: '4px',
+
+                width:'',
+                height:'',
+                borderColor:'grey',
+                borderWidth:'1px',
+                borderRadius:'4px',
+                backgroundColor:'',
+                zIndex:''
+                
             },
             onChange: `(e) => {console.log(e)}`
         },
@@ -84,18 +100,21 @@ export default [
 
         props: {
             name: '<textarea>',
-            value: '请输入段落',
+            defaultValue: '请输入段落',
             style: {
-                width: '200px',
-                height: '100px',
-                borderColor: 'grey',
-                borderWidth: '1px',
-                borderRadius: '4px',
+                width:'200px',
+                height:'100px',
+                borderColor:'grey',
+                borderWidth:'1px',
+                borderRadius:'4px',
+                backgroundColor:'',
+                zIndex:''
 
             },
             onChange: `(e) => {console.log(e)}`
         },
         children: [
+
 
         ]
     },
@@ -105,45 +124,45 @@ export default [
         props: {
             name: '<div>',
             style: {
-                boxSizing: 'border-box',
-                margin: '0px',
-                padding: '0px',
-                position: 'relative',
-                width: '',
-                height: '',
-                display: 'flex',
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                alignSelf: '',
-                zIndex: '',
-                backgroundColor: ''
+
+                boxSizing:'border-box',
+                margin:'0px',
+                padding:'0px',
+                position:'relative',
+                width:'',
+                height:'',
+                display:'flex',
+                flexDirection:'column',
+                flexWrap:'wrap',
+                justifyContent:'space-between',
+                alignItems:'center',
+                alignSelf:'center',
+                zIndex:'1',
+                backgroundColor:'#ffffff',
+                zIndex:''
+
 
             }
         },
         children: [
             'div'
-
         ]
     },
     {
         type: 'h1',
 
         props: {
-            name: '<h1>',
+            name: '<h>',
             style: {
-                backgroundColor: '',
-                color: 'black',
-                backgroundColor: 'white',
-                fontWeight: 'light',
-                textAlign: 'left',
-
-
+                color:'black',
+                textAlign:'left',
+                fontSize:'32px',
+                fontStyle:'normal',
+                zIndex:''
             }
         },
         children: [
-            'H1'
+            '标题'
 
         ]
     },
@@ -153,14 +172,14 @@ export default [
         props: {
             name: '<a>',
             label: '链接',
-            href: 'https://www.bilibili.com/',
+            href: '#',
             style: {
-                cursor: 'point',
+                cursor: 'pointer',
                 textDecoration: 'none',
-                color: 'blue',
-                url: ''
-
-
+                fontStyle:'normal',
+                color:'blue',
+                zIndex:'',
+                pointerEvents:'auto',
             }
         },
         children: [
@@ -174,11 +193,12 @@ export default [
             name: '<img>',
             label: '图片',
             alt: '',
-            src: '/img/logo.png',
+            src: 'https://images.pexels.com/photos/9287901/pexels-photo-9287901.jpeg',
+            // src: '/img/logo.png',
             style: {
-                width: '200px',
-                height: ''
-
+                width:'200px',
+                height:'',
+                zIndex:''
             }
         },
         children: [
@@ -195,8 +215,9 @@ export default [
             controls: 'controls',
             src: 'https://pic.oh4k.com/spdiy/wp-content/uploads/2022/08/20220809-mGFGRn.mp4',
             style: {
-                width: '200px',
-                height: ''
+                width:'200px',
+                height:'',
+                zIndex:''
             }
 
         },

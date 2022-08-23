@@ -3,6 +3,7 @@ import style from './index.module.scss'
 import { Component } from '../../render';
 import { PreviewComponent } from '../../render';
 
+
 export default function Container({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize, editMode }) {
     // console.log(pageInfo);
     if (editMode) {
@@ -19,7 +20,7 @@ export default function Container({ selectComponent, setSelectComponent, pageInf
                     style={{
                         width: `${canvasSize.width}px`,
                         height: `${canvasSize.height}px`,
-                        backgroundColor: 'white'
+                        backgroundColor: '#000000'
                     }}
                 >
                     <PreviewComponent
@@ -41,5 +42,6 @@ export default function Container({ selectComponent, setSelectComponent, pageInf
             </div>
         )
     }
+
 
 }
