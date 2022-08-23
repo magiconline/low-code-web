@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             let page = req.body['page']
 
             if (page) {
-                page._id = new ObjectId(page.pageID)
+                page._id = new ObjectId(page._id)
                 page.userID = new ObjectId(page.userID)
                 delete page.pageID
 

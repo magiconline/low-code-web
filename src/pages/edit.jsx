@@ -11,7 +11,6 @@ export default function Edit() {
 
     // 路由参数
     const router = useRouter()
-    const { userID, pageID } = router.query
 
     // 状态
     // Container页面信息，供渲染和后端使用
@@ -26,25 +25,24 @@ export default function Edit() {
     // 异步加载页面信息
     useEffect(() => {
         async function fecthData() {
-            try {
-                const pageInfo = await getPageInfo(userID, pageID)
-                setPageInfo(pageInfo)
-            } catch (e) {
-                console.log(e)
+            if (router.isReady) {
+                const { userID, pageID } = router.query
+                try {
+                    const pageInfo = await getPageInfo(userID, pageID)
+                    setPageInfo(pageInfo)
+                } catch (e) {
+                    console.log(e)
+                }
             }
         }
         fecthData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    }, [router.isReady])
 
     if (pageInfo) {
         // 加载成功
         return (
             <div className="editor-wrapper">
-                {/* <EditorHeader pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} /> */}
-                {/* <EditorMain pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} /> */}
-
                 <Header selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} editMode={editMode} setEditMode={setEditMode} />
                 <Main
                     selectComponent={selectComponent}
@@ -65,3 +63,5 @@ export default function Edit() {
 
 
 }
+
+Edit.getIni
