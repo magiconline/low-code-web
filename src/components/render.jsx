@@ -278,11 +278,11 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
 
 
     // 编辑时删除组件onXXX函数
-    let newProps = {}
-    for (let key in props.props) {
+    let newProps = deepCopy(props.props)
+    for (let key in newProps) {
         // console.log(`props.${key} = ${props.props[key]}`)
-        if (!isFunction(key)) {
-            newProps[key] = props.props[key]
+        if (isFunction(key)) {
+            delete newProps[key]
         }
     }
 
