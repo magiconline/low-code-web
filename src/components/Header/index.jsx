@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { deepCopy } from "../../utilts/clone";
 import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from "next/router";
 <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -26,8 +25,8 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
             let newPageInfoHistory = deepCopy([...pageInfoHistory, pageInfo])
             setPageInfoHistory(newPageInfoHistory)
             setIndex(index + 1)
-            console.log(pageInfoHistory)
-            console.log(index)
+            // console.log(pageInfoHistory)
+            // console.log(index)
         }
         // console.log(pageInfoHistory[pageInfoHistory.length - 1]);
 
@@ -36,6 +35,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
     //撤销
     const undo = () => {
         if (index > 0 && pageInfoHistory[pageInfoHistory.length - 1] !== pageInfo) {
+            // TODO bug?
             setIndex(index - 2)  //当点击时也会追加新的pageInfo，因此需要index减两次
             let newPageInfoHistory = deepCopy(pageInfoHistory)
             // newPageInfoHistory.length = index
@@ -82,7 +82,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
 
     //删除组件
     const deleteFocus = () => {
-        console.log('删除');
+        // console.log('删除');
         let newPageInfo = pageInfo
         let arr = newPageInfo.page.children
         selectDelete(arr, newPageInfo)
@@ -146,20 +146,19 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
         let pageID_ = newPageInfo.userID
         let page_ = newPageInfo
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://lowcode.fly.dev/api/savePage', true);
+        xhr.open('POST', '/api/savePage', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(
             JSON.stringify({
-                pageID: pageID_,
                 page: page_,
             })
         );
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var res = JSON.parse(xhr.responseText)
-                console.log(res)
+                // console.log(res)
                 if (res.code === 0) {
-                    console.log(res.msg)
+                    // console.log(res.msg)
                     toast.success(res.msg)
                 } else if (res.code === 1) {
                     // 不存在
@@ -188,7 +187,10 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
     return (
         <div className='editor-header'>
             <div className="editor-header-logo left">
-                <img src="/img/logo.png" height="40px"></img>
+                <a href={`/admin.html?userID=${pageInfo.userID}`}>
+                    <img src="/img/logo.png" height="40px"></img>
+                </a>
+
             </div>
             {buttons.map((button, index) => (
                 <button key={index} className="editor-header-button left" onClick={button.handler}>{button.label}<Toaster /></button>
@@ -212,7 +214,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
             {/* <Link to="/attack/" className="editor-header-button right" style={{ textDecoration: 'none' }}>发布</Link> */}
             <button onClick={() => setEditMode(!editMode)}>切换编辑/预览</button>
             <button className="editor-header-button right" onClick={saveSchema}>保存<Toaster /></button>
-            <a className="editor-header-button right" href={"https://lowcode.fly.dev/view/" + pageInfo.pageID}>发布</a>
+            <a className="editor-header-button right" href={"/view/" + pageInfo._id}>发布</a>
         </div>
     )
 }
