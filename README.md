@@ -30,3 +30,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 # 画布界面地址
 - http://localhost:3000/edit?userID=&pageID
+
+# 安装antd组件
+
+- yarn add antd

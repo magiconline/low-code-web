@@ -1,32 +1,3 @@
-// // import React from 'react'
-// // import components from '../../../schema/components'
-// // import style from './index.module.scss'
-
-// // export default function Left() {
-// //   const handle_dragStart = (e, type) => {
-// //     e.dataTransfer.setData('component/type', type)
-// //   }
-
-// //   return (
-// //     <div className={style.editorLeft}>
-// //       {
-// //         components.map((component, index) =>
-// //           <div className={style.editorLeftItem} key={index} style={{ margin: '20px' }}>
-// //             {/* <DragComponent key={index}{...component}></DragComponent> */}
-// //             <div
-// //               draggable
-// //               onDragStart={(e) => handle_dragStart(e, component.type)}
-// //             >
-// //               {component.props.name}
-// //             </div>
-// //           </div>
-// //         )
-// //       }
-// //     </div>
-// //   )
-// // }
-
-
 import React from "react"
 import componentlayoutList from '../../../schema/components-layout'
 import componenttexttList from '../../../schema/components-text'
@@ -112,62 +83,5 @@ export default function Left() {
   )
 
 
-  // return (
-  //   <section className={style.editorLeft}>
-  //       <Collapse defaultActiveKey={['1','2','3']}>
-          
-  //           <Panel className={style.editorLeftLayout} header="布局组件" key="1">
-  //           {
-  //             componentlayoutList.map((component, index) =>
-
-  //               <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
-  //                 {/* <DragComponent key={index}{...component}></DragComponent> */}
-  //                 <div
-  //                   draggable
-  //                   onDragStart={(e) => handle_dragStart(e, component.type)}
-  //                 >
-  //                   {component.props.name}
-  //                 </div>
-  //               </div>
-  //             )
-  //           }
-  //           </Panel>
-          
-  //         <Panel className={style.editorLeftText} header="文本类组件" key="2">
-  //         {
-  //           componenttexttList.map((component, index) =>
-  //             <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
-  //               {/* <DragComponent key={index}{...component}></DragComponent> */}
-  //               <div
-  //                 draggable
-  //                 onDragStart={(e) => handle_dragStart(e, component.type)}
-  //               >
-  //                 {component.props.name}
-  //               </div>
-  //             </div>
-  //           )
-  //         }
-
-  //         </Panel>
-  //         <Panel className={style.editorLeftMultimedia} header="多媒体组件" key="3">
-  //         {
-  //           componentmultimediaList.map((component, index) =>
-
-  //             <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
-  //               {/* <DragComponent key={index}{...component}></DragComponent> */}
-  //               <div
-  //                 draggable
-  //                 onDragStart={(e) => handle_dragStart(e, component.type)}
-  //               >
-  //                 {component.props.name}
-  //               </div>
-  //             </div>
-  //           )
-  //         }
-
-  //         </Panel>
-  //       </Collapse>
-
-  //   </section>
-  // )
+  
 }

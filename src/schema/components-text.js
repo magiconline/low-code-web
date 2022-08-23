@@ -79,7 +79,7 @@ export default [
         type: 'h1',
 
         props: {
-            name: '<h1>',
+            name: '<h>',
             style: {
 
             }
