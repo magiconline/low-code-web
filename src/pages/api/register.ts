@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const result = await userCollection.insertOne({
                     username: username,
                     phone: phone,
-                    password: CryptoJS.MD5(password).toString(CryptoJS.enc.Utf8),
+                    password: CryptoJS.MD5(password).toString(),
                     pages: <any>[]
                 })
 

@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (phone && password) {
                 const result = await userCollection.findOne({
                     phone: phone,
-                    password: CryptoJS.MD5(password).toString(CryptoJS.enc.Utf8)
+                    password: CryptoJS.MD5(password).toString()
                 })
 
                 if (result) {

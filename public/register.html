@@ -114,7 +114,7 @@
                 phone_ = register.mobile.value;
                 password_ = register.psd.value;
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'https://lowcode.fly.dev/api/register');
+                xhr.open('POST', '/api/register');
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(
                     JSON.stringify({
@@ -130,7 +130,7 @@
                             var Msg = "注册成功！";
                             $parent.append("<span class='msg_onRight'>" + Msg + "</span>");
                             setTimeout(function () {
-                                self.location = 'login.html';
+                                self.location = 'index.html';
                             }, 1000)
                         } else if (res.code === 1) {
                             if (num === 0) {

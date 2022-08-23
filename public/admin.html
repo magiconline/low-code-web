@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人管理页面</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 
 <body>
     <!-- 顶部logo -->
     <div class="logo_add">
-        <img class="logo" src="./logo.png" />
+        <img class="logo" src="/img/logo.png" />
         <button class="add" onclick="clickcreate()">新增项目</button>
         <button class="back" id="exit" onclick="exit()">退出登录</button>
     </div>
@@ -53,7 +53,7 @@
         <!-- 交互框 -->
         <div class="rename">
             <div class="header"></div>
-            <div id="projnewname"> 
+            <div id="projnewname">
                 <p>
                     请输入项目的新名称：
                 </p>
@@ -93,9 +93,9 @@
         </div>
     </div>
 
-    <script src="./jquery.min.js"></script>
-    <script src="./particles.min.js"></script>
-    <script src="./app.js"></script>
+    <script src="/libs/jquery-1.12.4/jquery.min.js"></script>
+    <script src="/libs/particles/particles.min.js"></script>
+    <script src="/libs/particles/js/app.js"></script>
     <script>
         document.getElementById('timeout').style.display = 'none';
         document.getElementById('networkerror').style.display = 'none';
@@ -113,9 +113,9 @@
             }
             return null;
         }
-        //var userID = getQueryString("userID");
+        var userID = getQueryString("userID");
         //测试用
-        var userID = '62f9f5b51b7de413bf2ae948';
+        // var userID = '62f9f5b51b7de413bf2ae948';
 
         //定义数组接收参数
         var pages = new Array();
@@ -147,7 +147,7 @@
 
         //退出登录后 跳转画面到登录界面中
         function exit() {
-            location.href = 'index.html';
+            location.href = '/index.html';
         }
 
         //获取所有项目
@@ -170,7 +170,7 @@
                 location.reload();
             }
 
-            xhr.open("POST", 'https://lowcode.fly.dev/api/listPages?t=' + Date.now());
+            xhr.open("POST", '/api/listPages?t=' + Date.now());
             xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(data));
@@ -284,7 +284,7 @@
                 //存入数据
                 var data = { pageName: newproject, userID: userID };
                 //发出POST请求
-                xhr.open("POST", 'https://lowcode.fly.dev/api/createPage?t=' + Date.now());
+                xhr.open("POST", '/api/createPage?t=' + Date.now());
                 xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify(data));
@@ -317,7 +317,7 @@
         //编辑项目 跳转
         function makeedit(pageID) {
             return function edit() {
-                location.href = 'https://lowcode.fly.dev/edit?userID=' + userID + '&pageID=' + pageID;
+                location.href = '/edit?userID=' + userID + '&pageID=' + pageID;
             }
         }
 
@@ -327,7 +327,7 @@
                 //存入数据
                 var data = { userID: userID, pageID: pageID };
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'https://lowcode.fly.dev/api/deletePage?t=' + Date.now());
+                xhr.open('POST', '/api/deletePage?t=' + Date.now());
                 xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify(data));
@@ -370,7 +370,7 @@
                         //存入数据
                         var data = { userID: userID, pageID: pageID, pageName: newname };
                         var xhr = new XMLHttpRequest();
-                        xhr.open('POST', 'https://lowcode.fly.dev/api/renamePage?t=' + Date.now());
+                        xhr.open('POST', '/api/renamePage?t=' + Date.now());
                         xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify(data));
