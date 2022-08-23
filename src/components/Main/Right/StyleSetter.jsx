@@ -5,29 +5,29 @@ import style from './index.module.scss'
 
 
 const propsColorType = [
-    'color', 'backgroundColor','outlineColor','borderColor'
+    'color', 'backgroundColor', 'outlineColor', 'borderColor'
 ]
 const propsFont = ['fontSize']
-const propsStyle={
+const propsStyle = {
 
-    boxSizing:['border-box','content-box'],
-    position:['relative','absolute','static','fixed'],
-    display:['flex','inline-flex','inline'],
-    flexDirection:['row','column'],
-    flexWrap:['wrap','nowrap'],
-    borderStyle:['solid','dotted','dashed','double','groove','ridge','insert','outset'],
-    justifyContent:['flex-start','flex-end','center','baseline','space-between','space-around','inherit'],
-    alignItems:['flex-start','flex-end','center','baseline','space-between','space-around','inherit'],
-    alignSelf:['start','end','center','stretch'],
-    textAlign:['left','center','right'],
-    textDecoration:['none','underline','overline','line-through','blink'],
-    fontWeight:['light','bold'],
-    fontStyle:['normal','Italic'],
-    cursor:['default','pointer'],
-    pointerEvents:['auto','none'],
+    boxSizing: ['border-box', 'content-box'],
+    position: ['relative', 'absolute', 'static', 'fixed'],
+    display: ['flex', 'inline-flex', 'inline'],
+    flexDirection: ['row', 'column'],
+    flexWrap: ['wrap', 'nowrap'],
+    borderStyle: ['solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'insert', 'outset'],
+    justifyContent: ['flex-start', 'flex-end', 'center', 'baseline', 'space-between', 'space-around', 'inherit'],
+    alignItems: ['flex-start', 'flex-end', 'center', 'baseline', 'space-between', 'space-around', 'inherit'],
+    alignSelf: ['start', 'end', 'center', 'stretch'],
+    textAlign: ['left', 'center', 'right'],
+    textDecoration: ['none', 'underline', 'overline', 'line-through', 'blink'],
+    fontWeight: ['light', 'bold'],
+    fontStyle: ['normal', 'Italic'],
+    cursor: ['default', 'pointer'],
+    pointerEvents: ['auto', 'none'],
 
 }
-    
+
 
 
 
@@ -77,26 +77,29 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
         return false
     }
 
+
     return (
         <div className="style-setter-wrapper">
-            {   
+            {
                 Object.keys(props.style).map((key, index) => {
+
+                    index = `${props.id}_${index}` // index区分不同组件id与顺序index
                     if (propsColorType.indexOf(key) !== -1) {
-                        
+
                         // 显示color
                         return (
                             <div className={style.setterItemLabel} key={index}>
                                 <div className={style.styleName}>{key} :</div>
                                 <input className={style.setterItem} type="color" onChange={event => handleChange(key, event.target.value)} value={key.value} />
-                                
+
                             </div>
-                            
+
                         )
-                        
-                    } 
+
+                    }
                     //ming新增
                     //标题hgroup
-                    else if(propsFont[0].indexOf(key) !== -1){
+                    else if (propsFont[0].indexOf(key) !== -1) {
                         return (
                             <div className={style.setterItemLabel} key={index}>
                                 <div className={style.styleName}>{key}:</div>
@@ -126,18 +129,18 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
                         )
                     }
                     //除去颜色和标题大小外的所有属性显示select
-                    else if(Object.keys(propsStyle).indexOf(key) !== -1){
+                    else if (Object.keys(propsStyle).indexOf(key) !== -1) {
                         return (
                             <div className={style.setterItemLabel} key={index}>
                                 <div className={style.styleName}>{key}:</div>
                                 <select className={style.setterItem} onChange={event => handleChange(key, event.target.value)} value={key.value}>
                                     {
-                                        propsStyle[key].map((item,i)=>{
-                                                return(
-                                                    <option value={item} key={i}>{item}</option>
-                                                )
+                                        propsStyle[key].map((item, i) => {
+                                            return (
+                                                <option value={item} key={i}>{item}</option>
+                                            )
                                         })
-                                }
+                                    }
                                 </select>
                             </div>
                         )
@@ -145,26 +148,26 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
                     //ming新增
                     else {
                         // 显示string
-                                return (
-                                    <div className={style.setterItemLabel} key={index}>
-                                        <div className={style.styleName}>{key}:</div>
-                                        <input className={style.setterItem} type={'text'} value={props.style[key]} onChange={event => handleChange(key, event.target.value)} placeholder="请输入对应属性值"/>
-                                    </div>
-                                )
-                        }
-                        
+                        return (
+                            <div className={style.setterItemLabel} key={index}>
+                                <div className={style.styleName}>{key}:</div>
+                                <input className={style.setterItem} type={'text'} value={props.style[key]} onChange={event => handleChange(key, event.target.value)} placeholder="请输入对应属性值" />
+                            </div>
+                        )
+                    }
 
-                    
+
+
                 })
             }
             {
                 Object.keys(props).map((key, index) => {
                     //如果是图片，另外增加显示src地址
-                    if(key == 'src'){
+                    if (key == 'src') {
                         return (
                             <div className={style.setterItemLabel} key={index}>
                                 <div className={style.styleName}>src:</div>
-                                <input className={style.setterItem} type={'text'} value={props.src} onChange={event => handleChange(key, event.target.value)}/>
+                                <input className={style.setterItem} type={'text'} value={props.src} onChange={event => handleChange(key, event.target.value)} />
                             </div>
                         )
                     }
@@ -173,18 +176,18 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
             {
                 Object.keys(props).map((key, index) => {
                     //如果是链接，另外增加显示href地址
-                    if(key =='href'){
+                    if (key == 'href') {
                         return (
                             <div className={style.setterItemLabel} key={index}>
                                 <div className={style.styleName}>href:</div>
-                                <input className={style.setterItem} type={'text'} value={props.href} onChange={event => handleChange(key, event.target.value)}/>
+                                <input className={style.setterItem} type={'text'} value={props.href} onChange={event => handleChange(key, event.target.value)} />
                             </div>
                         )
                     }
                 })
-            }     
+            }
 
-            
+
         </div>
     )
 
