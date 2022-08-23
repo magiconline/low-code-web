@@ -63,5 +63,3 @@ export default function Edit() {
 
 
 }
-
-Edit.getIni

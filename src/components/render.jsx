@@ -280,7 +280,10 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
         newProps.style['pointer-events'] = 'none'
     }
 
-
+    // TODO 编辑时禁用input 和 textarea标签输入功能（设置只读）
+    if (props.type === 'input' || props.type === 'textarea') {
+        newProps.readOnly = true
+    }
 
     // img标签不能传children参数
     // 通过切换className高亮被选中的组件
