@@ -37,8 +37,24 @@ export default function Container({ selectComponent, setSelectComponent, pageInf
     } else {
         // 预览模式
         return (
-            <div className={style.editorCenter}>
-                <Component {...pageInfo.page}></Component>
+            <div
+                className={style.editorCenter}
+                onClick={e => {
+                    setSelectComponent(parseInt(e.target.id))
+                }}
+            >
+                <div
+                    className={style.canvasCenter}
+                    style={{
+                        width: `${canvasSize.width}px`,
+                        height: `${canvasSize.height}px`,
+                        backgroundColor: '#000000'
+                    }}
+                >
+                    <div className={style.editorCenter}>
+                        <Component {...pageInfo.page}></Component>
+                    </div>
+                </div>
             </div>
         )
     }
