@@ -189,53 +189,56 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
         { label: '下移', handler: placeBottom },
     ]
     return (
-      <div className='editor-header'>
-        <div className='editor-header-logo'>
-          <img className='editor-header-logo-pic' src="/img/logo.png"></img>
-        </div>
-        <div className='editor-header-content'>
-          <div className='editor-header-content-button'>
-          {buttons.map((button, index) => (
-            <button key={index} className="editor-header-button" onClick={button.handler}>{button.label}<Toaster /></button>
-          ))}
-          </div>
-          <div className='editor-header-content-block'></div>
-          <div style={{ color: '#606266', marginLeft: '10px ' }} className='editor-header-canvas-setter'>
-            <span>画布尺寸:</span>
-            <select onChange={(e) => setCanvasSize({ width: e.target.value.split('*')[0],height: e.target.value.split('*')[1]})} className={style.HeaderCanvasSetterSelect}>
-              <option value="1024*768" >PC:1024*768px</option>
-              <option value="1280*768" >PC:1280*768px</option>
-              <option value="1920*960" >PC:1920*960px</option>
-              <option value="375*667" >iPhone SE:375*667px</option>
-              <option value="360*740" >Samsung:360*740px</option>
-            </select>
-  
-            <span style={{}}>自定义尺寸:</span>
-            <input
-              className={style.HeaderCanvasSetterInput}
-              value={canvasSize.width}
-              onChange={(e) => setCanvasSize({ width: e.target.value, height: canvasSize.height })} 
-              
-              
-            />
-            <span> * </span>
-            <input
-              className={style.HeaderCanvasSetterInput}
-              value={canvasSize.height}
-              onChange={(e) => setCanvasSize({ width: canvasSize.width, height: e.target.value })}
-              
-            />
+        <div className='editor-header'>
+            <div className='editor-header-logo'>
+                <a href={`/admin.html?userID=${pageInfo.userID}`}>
+                    <img className='editor-header-logo-pic' src="/img/logo.png"></img>
+                </a>
             </div>
-  
-            <div>
-              <button className="editor-header-button right" onClick={saveSchema}>保存<Toaster /></button>
-              <a className="editor-header-button right" href={"https://lowcode.fly.dev/view/" + pageInfo.pageID}>发布</a>
+            <div className='editor-header-content'>
+                <div className='editor-header-content-button'>
+                    {buttons.map((button, index) => (
+                        <button key={index} className="editor-header-button" onClick={button.handler}>{button.label}<Toaster /></button>
+                    ))}
+                </div>
+                <div className='editor-header-content-block'></div>
+                <div style={{ color: '#606266', marginLeft: '10px ' }} className='editor-header-canvas-setter'>
+                    <span>画布尺寸:</span>
+                    <select onChange={(e) => setCanvasSize({ width: e.target.value.split('*')[0], height: e.target.value.split('*')[1] })} className={style.HeaderCanvasSetterSelect}>
+                        <option value="1024*768" >PC:1024*768px</option>
+                        <option value="1280*768" >PC:1280*768px</option>
+                        <option value="1920*960" >PC:1920*960px</option>
+                        <option value="375*667" >iPhone SE:375*667px</option>
+                        <option value="360*740" >Samsung:360*740px</option>
+                    </select>
+
+                    <span style={{}}>自定义尺寸:</span>
+                    <input
+                        className={style.HeaderCanvasSetterInput}
+                        value={canvasSize.width}
+                        onChange={(e) => setCanvasSize({ width: e.target.value, height: canvasSize.height })}
+
+
+                    />
+                    <span> * </span>
+                    <input
+                        className={style.HeaderCanvasSetterInput}
+                        value={canvasSize.height}
+                        onChange={(e) => setCanvasSize({ width: canvasSize.width, height: e.target.value })}
+
+                    />
+                </div>
+
+                <div>
+                    <button onClick={() => setEditMode(!editMode)}>切换编辑/预览</button>
+                    <button className="editor-header-button right" onClick={saveSchema}>保存<Toaster /></button>
+                    <a className="editor-header-button right" href={"https://lowcode.fly.dev/view/" + pageInfo.pageID}>发布</a>
+                </div>
             </div>
+
+            {/* <Link to="/attack/" className="editor-header-button right" style={{ textDecoration: 'none' }}>发布</Link> */}
+
         </div>
-  
-        {/* <Link to="/attack/" className="editor-header-button right" style={{ textDecoration: 'none' }}>发布</Link> */}
-  
-      </div>
     )
 
 }
