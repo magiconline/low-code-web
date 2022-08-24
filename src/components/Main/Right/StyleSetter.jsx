@@ -8,7 +8,7 @@ const propsColorType = [
     'color', 'backgroundColor', 'outlineColor', 'borderColor'
 ]
 // props中不显示的
-const blankProps = ['name','style','type','id','controls','label']
+const blankProps = ['name', 'style', 'type', 'controls', 'label']
 const propsFont = ['fontSize']
 const propsStyle = {
 
@@ -52,11 +52,11 @@ function findComponentByID(page, id) {
 }
 
 // 根据id查找组件的children
-function findChildrenByID(page,id){
+function findChildrenByID(page, id) {
     if (typeof page === 'string') {
         return false
-    } else if (page.props.id === id && page.props.id>1) {
-        return page.children 
+    } else if (page.props.id === id && page.props.id > 1) {
+        return page.children
     } else {
         let result
         for (let i in page.children) {
@@ -84,7 +84,7 @@ function change(page, selectComponent, key, value) {
     }
 }
 //修改props
-function changeProps(page, selectComponent, key, value){
+function changeProps(page, selectComponent, key, value) {
     if (typeof page === 'string') {
         return page
     }
@@ -97,14 +97,14 @@ function changeProps(page, selectComponent, key, value){
     }
 }
 // 修改children中的文本
-function changeChildren(page, selectComponent, key, value){
+function changeChildren(page, selectComponent, key, value) {
     if (typeof page === 'string') {
         return page
     }
-    if(page.props.id === selectComponent){
+    if (page.props.id === selectComponent) {
         page.children[0] = value
         return page
-    }else {
+    } else {
         page.children = page.children.map((child) => changeChildren(child, selectComponent, key, value))
         return page
     }
@@ -132,125 +132,134 @@ const StyleSetter = ({ pageInfo, selectComponent, setPageInfo }) => {
     }
 
     let props = findComponentByID(pageInfo.page, selectComponent)
-    let children = findChildrenByID(pageInfo.page,selectComponent)
+    let children = findChildrenByID(pageInfo.page, selectComponent)
     if (props === false) {
         throw Error(`未找到id: ${id}`)
-      
+
     }
 
 
     return (
         <div className="style-setter-wrapper">
-            {/* props.style */}
-            <div>
-            {
-                Object.keys(props.style).map((key, index) => {
-
-                    index = `${props.id}_${index}` // index区分不同组件id与顺序index
-                    if (propsColorType.indexOf(key) !== -1) {
-                        // 显示color
-                        return (
-                            <div className={style.setterItemLabel} key={index}>
-                                <div className={style.styleName}>{key} :</div>
-                                <input className={style.setterItem} type="color" onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''} />
-                            </div>
-                        )
-                    }
-                    //ming新增
-                    //标题hgroup
-                    else if (propsFont[0].indexOf(key) !== -1) {
-                        return (
-                            <div className={style.setterItemLabel} key={index}>
-                                <div className={style.styleName}>{key}:</div>
-                                <select className={style.setterItem} onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''}>
-                                    <option value='32px'>h1</option>
-                                    <option value='24px'>h2</option>
-                                    <option value='18px'>h3</option>
-                                    <option value='15px'>h4</option>
-                                    <option value='13px'>h5</option>
-                                    <option value='10px'>h6</option>
-                                    <option value='48px'>48px</option>
-                                    <option value='44px'>44px</option>
-                                    <option value='40px'>40px</option>
-                                    <option value='36px'>36px</option>
-                                    <option value='32px'>32px</option>
-                                    <option value='28px'>28px</option>
-                                    <option value='24px'>24px</option>
-                                    <option value='20px'>20px</option>
-                                    <option value='16px'>16px</option>
-                                    <option value='12px'>12px</option>
-                                    <option value='8px'>8px</option>
-                                    <option value='6px'>6px</option>
-                                    <option value='4px'>4px</option>
-
-                                </select>
-                            </div>
-                        )
-                    }
-                    //除去颜色和标题大小外的所有属性显示select
-                    else if (Object.keys(propsStyle).indexOf(key) !== -1) {
-                        return (
-                            <div className={style.setterItemLabel} key={index}>
-                                <div className={style.styleName}>{key}:</div>
-                                <select className={style.setterItem} onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''}>
-                                    {
-                                        propsStyle[key].map((item, i) => {
-                                            return (
-                                                <option value={item} key={i}>{item}</option>
-                                            )
-                                        })
-                                    }
-                                </select>
-                            </div>
-                        )
-                    }
-                    //ming新增
-                    else {
-                        // 显示string
-                        return (
-                            <div className={style.setterItemLabel} key={index}>
-                                <div className={style.styleName}>{key}:</div>
-                                <input className={style.setterItem} type={'text'} value={props.style[key]} onChange={event => handleChange(key, event.target.value)} placeholder="请输入对应属性值" />
-                            </div>
-                        )
-                    }
-                })
-            }
-            </div>
             {/* props */}
             <div>
                 {
-                    Object.keys(props).map((key,index) => {
-                        if (blankProps.indexOf(key) !== -1){
-                         return null
-                        }else if(key.startsWith('on')){
+                    Object.keys(props).map((key, index) => {
+                        if (blankProps.indexOf(key) !== -1) {
                             return null
-                        }else{
+                        } else if (key.startsWith('on')) {
+                            return null
+                        } else if (key === 'id') {
+                            return (
+                                <div className={style.setterItemLabel} key={index}>
+                                    <div className={style.styleName}>{key}: {props[key]}</div>
+                                    {/* <input className={style.setterItem} type={'text'} value={props[key]} onChange={event => handleChangeProps(key, event.target.value)} placeholder="请输入对应属性值" /> */}
+                                </div>
+                            )
+                        }
+                        else {
                             return (
                                 <div className={style.setterItemLabel} key={index}>
                                     <div className={style.styleName}>{key}:</div>
-                                    <input className={style.setterItem} type={'text'} value={props[key]} onChange={event => handleChangeProps(key, event.target.value)} placeholder="请输入对应属性值"/>
+                                    <input className={style.setterItem} type={'text'} value={props[key]} onChange={event => handleChangeProps(key, event.target.value)} placeholder="请输入对应属性值" />
                                 </div>
                             )
                         }
                     })
                 }
-           </div>
+            </div>
+            {/* props.style */}
+            <div>
+                {
+                    Object.keys(props.style).map((key, index) => {
+
+                        index = `${props.id}_${index}` // index区分不同组件id与顺序index
+                        if (propsColorType.indexOf(key) !== -1) {
+                            // 显示color
+                            return (
+                                <div className={style.setterItemLabel} key={index}>
+                                    <div className={style.styleName}>{key} :</div>
+                                    <input className={style.setterItem} type="color" onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''} />
+                                </div>
+                            )
+                        }
+                        //ming新增
+                        //标题hgroup
+                        else if (propsFont[0].indexOf(key) !== -1) {
+                            return (
+                                <div className={style.setterItemLabel} key={index}>
+                                    <div className={style.styleName}>{key}:</div>
+                                    <select className={style.setterItem} onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''}>
+                                        <option value='32px'>h1</option>
+                                        <option value='24px'>h2</option>
+                                        <option value='18px'>h3</option>
+                                        <option value='15px'>h4</option>
+                                        <option value='13px'>h5</option>
+                                        <option value='10px'>h6</option>
+                                        <option value='48px'>48px</option>
+                                        <option value='44px'>44px</option>
+                                        <option value='40px'>40px</option>
+                                        <option value='36px'>36px</option>
+                                        <option value='32px'>32px</option>
+                                        <option value='28px'>28px</option>
+                                        <option value='24px'>24px</option>
+                                        <option value='20px'>20px</option>
+                                        <option value='16px'>16px</option>
+                                        <option value='12px'>12px</option>
+                                        <option value='8px'>8px</option>
+                                        <option value='6px'>6px</option>
+                                        <option value='4px'>4px</option>
+
+                                    </select>
+                                </div>
+                            )
+                        }
+                        //除去颜色和标题大小外的所有属性显示select
+                        else if (Object.keys(propsStyle).indexOf(key) !== -1) {
+                            return (
+                                <div className={style.setterItemLabel} key={index}>
+                                    <div className={style.styleName}>{key}:</div>
+                                    <select className={style.setterItem} onChange={event => handleChange(key, event.target.value)} value={props.style[key] || ''}>
+                                        {
+                                            propsStyle[key].map((item, i) => {
+                                                return (
+                                                    <option value={item} key={i}>{item}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                            )
+                        }
+                        //ming新增
+                        else {
+                            // 显示string
+                            return (
+                                <div className={style.setterItemLabel} key={index}>
+                                    <div className={style.styleName}>{key}:</div>
+                                    <input className={style.setterItem} type={'text'} value={props.style[key]} onChange={event => handleChange(key, event.target.value)} placeholder="请输入对应属性值" />
+                                </div>
+                            )
+                        }
+                    })
+                }
+            </div>
+
             {/* children */}
             <div>
-            {
-                    Object.keys({...children}).map((key,index) => {
-                        if(typeof children[index] === 'string'){
+                {
+                    Object.keys({ ...children }).map((key, index) => {
+                        if (typeof children[index] === 'string') {
                             return (
                                 <div className={style.setterItemLabel} key={index}>
                                     <div className={style.styleName}>content:</div>
-                                    <input className={style.setterItem}  type={'text'} value={{...children}[key] || ''} onChange={event => handleChangeChildren(key, event.target.value)} />
+                                    <input className={style.setterItem} type={'text'} value={{ ...children }[key] || ''} onChange={event => handleChangeChildren(key, event.target.value)} />
                                 </div>
                             )
-                        }else{
+                        } else {
                             return null
                         }
-                       
+
                     })
                 }
             </div>
