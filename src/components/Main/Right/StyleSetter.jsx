@@ -8,7 +8,7 @@ const propsColorType = [
     'color', 'backgroundColor', 'outlineColor', 'borderColor'
 ]
 // props中不显示的
-const blankProps = ['name', 'style', 'type', 'controls', 'label']
+const blankProps = ['name', 'style', 'controls', 'label']
 const propsFont = ['fontSize']
 const propsStyle = {
 
