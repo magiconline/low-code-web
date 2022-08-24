@@ -20,7 +20,7 @@ const propsStyle = {
     borderStyle: ['solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'insert', 'outset'],
     justifyContent: ['flex-start', 'flex-end', 'center', 'baseline', 'space-between', 'space-around', 'inherit'],
     alignItems: ['flex-start', 'flex-end', 'center', 'baseline', 'space-between', 'space-around', 'inherit'],
-    alignSelf: ['start', 'end', 'center', 'stretch'],
+    alignSelf: ['auto', 'start', 'end', 'center', 'stretch'],
     textAlign: ['left', 'center', 'right'],
     textDecoration: ['none', 'underline', 'overline', 'line-through', 'blink'],
     fontWeight: ['light', 'bold'],
