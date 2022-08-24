@@ -12,9 +12,10 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    height: 96px;
+    height: 64px;
     margin-bottom: 0px;
-    padding: 0 10px;
+    padding: 0px 6px 6px 6px;
+
     width: 100%;
     min-width: 400px;
     flex-wrap: wrap;
@@ -46,7 +47,7 @@
         flex-wrap: nowrap;
         width:30%;
         overflow: hidden;
-        min-width:300px;
+        min-width:250px;
 
         .editor-header-button {
           display: inline-block;
@@ -64,43 +65,43 @@
           margin: 0;
           transition: .1s;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 12px;
           border-radius: 8px;
           margin:4px;
           width:12%;
           overflow: hidden;
           min-width: 14px;
-          height:40px;
+          height:32px;
         }
 
       }
       .editor-header-canvas-setter{
         flex-wrap: nowrap;
         justify-content: flex-start;
-        font-size: 16px;
+        font-size: 14px;
         display:flex;
         overflow: hidden;
-        min-width: 700px;
+        min-width: 600px;
         .setter-box{
           margin:20px;
 
 
           .header-canvas-setter-select{
             border: 1px solid #DCDFE6;
-            width:200px;
-            height:40px;
+            width:180px;
+            height:32px;
             padding-left:8px;
-            font-size: 16px;
+            font-size: 14px;
             border-radius: 8px;
             
   
           }
           .header-canvas-setter-input{
             border: 1px solid #DCDFE6;
-            height:40px;
-            width:72px;
+            height:32px;
+            width:64px;
             padding-left:8px;
-            font-size: 16px;
+            font-size: 14px;
             border-radius: 8px;
           }
 
@@ -129,19 +130,19 @@
           transition: .1s;
           font-weight: 500;
           padding:10px;
-          font-size: 16px;
+          font-size: 12px;
           border-radius: 8px;
           margin:4px;
-          height:40px;
-          padding-left: 16px;
-          padding-right: 16px;
+          height:32px;
+          padding-left: 12px;
+          padding-right: 12px;
 
           &.edit-button{
             background-color: #FFF;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            width:180px;
+            width:160px;
             &:active{
               background-color: #c5d3fd;
             }
