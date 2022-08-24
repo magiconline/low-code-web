@@ -9,8 +9,7 @@ export default function Main({ selectComponent, setSelectComponent, pageInfo, se
 
     return (
         <div className={style.editorMain}>
-            <Left />
-
+            
             <Container
                 selectComponent={selectComponent}
                 setSelectComponent={setSelectComponent}
@@ -19,6 +18,7 @@ export default function Main({ selectComponent, setSelectComponent, pageInfo, se
                 setPageInfo={setPageInfo}
                 editMode={editMode}
             />
+            <Left />
 
             <Right
                 selectComponent={selectComponent}

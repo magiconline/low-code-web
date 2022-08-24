@@ -2,11 +2,25 @@
 .editorLeft {
   position: absolute;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   width: 14vw;
+  min-width: 200px;
   left: 0;
   top: 0;
-  background-color: rgb(252, 252, 255);
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #d9dcf4;
+  box-shadow: 1px 8px 20px 1px rgba(112, 112, 242, 0.2);
+
+  &::-webkit-scrollbar-track{
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar{
+    width:3px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #000CF5;
+  }
 
   .editorLeftLayout, .editorLeftText, .editorLeftMultimedia{
     margin-bottom: 2px;
@@ -20,7 +34,7 @@
             background-color: #eff2ff;
 
             &::marker{
-              font-size:10px;
+              font-size:16px;
               direction:ltr;
               color:#000CF5;
             }
@@ -39,7 +53,7 @@
     text-align: center;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(253, 253, 255);
+    background-color: rgb(255, 255, 255);
     color: #000CF5;
     font-family: Geneva;
     font-size: 18px;
@@ -50,7 +64,6 @@
       width:36px; 
       height:38px;
       fill:#BFC3F2;
-      align-items: center;
 
     }
 
