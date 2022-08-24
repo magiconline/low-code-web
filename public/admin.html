@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人管理页面</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
 </head>
 
 <body>
     <!-- 顶部logo -->
     <div class="logo_add">
-        <img class="logo" src="/img/logo.png" />
+        <img class="logo" src="./logo.png" />
         <button class="add" onclick="clickcreate()">新增项目</button>
         <button class="back" id="exit" onclick="exit()">退出登录</button>
     </div>
     <!-- 项目内容 -->
     <div id="particles-js">
         <div class="table" id="projecttable">
+
         </div>
     </div>
     <!-- 创建项目的遮罩层 -->
@@ -74,6 +75,20 @@
         </div>
     </div>
 
+    <!-- 确认删除提示 -->
+    <div class="bg" id="confirmdele">
+        <!-- 交互框 -->
+        <div class="dele">
+            <div class="header"></div>
+            
+                <p>
+                    <button type="button" class="btn" id="confirmbtn">确认删除</button>
+                    <button type="button" class="btn" id="nodele">返回</button>
+                </p>
+            
+        </div>
+    </div>
+
     <!-- 超时弹窗 -->
     <div id="timeout" class="bg">
         <div class="timeout">
@@ -83,6 +98,7 @@
             <p>您的请求已超时！请重试！</p>
         </div>
     </div>
+
     <!-- 网络异常 -->
     <div id="networkerror" class="bg">
         <div class="networkerror">
@@ -93,9 +109,9 @@
         </div>
     </div>
 
-    <script src="/libs/jquery-1.12.4/jquery.min.js"></script>
-    <script src="/libs/particles/particles.min.js"></script>
-    <script src="/libs/particles/js/app.js"></script>
+    <script src="./libs/jquery.min.js"></script>
+    <script src="./libs/particles.min.js"></script>
+    <script src="./libs/app.js"></script>
     <script>
         document.getElementById('timeout').style.display = 'none';
         document.getElementById('networkerror').style.display = 'none';
@@ -103,7 +119,7 @@
         document.getElementById('empty').style.display = 'none';
         document.getElementById('rename').style.display = 'none';
         document.getElementById('renameempty').style.display = 'none';
-
+        document.getElementById('confirmdele').style.display = 'none';
         //获取链接中的userID
         function getQueryString(name) {
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -113,9 +129,9 @@
             }
             return null;
         }
-        var userID = getQueryString("userID");
+        //var userID = getQueryString("userID");
         //测试用
-        // var userID = '62f9f5b51b7de413bf2ae948';
+        var userID = '62f9f5b51b7de413bf2ae948';
 
         //定义数组接收参数
         var pages = new Array();
@@ -147,7 +163,7 @@
 
         //退出登录后 跳转画面到登录界面中
         function exit() {
-            location.href = '/index.html';
+            location.href = 'index.html';
         }
 
         //获取所有项目
@@ -170,7 +186,7 @@
                 location.reload();
             }
 
-            xhr.open("POST", '/api/listPages?t=' + Date.now());
+            xhr.open("POST", 'https://lowcode.fly.dev/api/listPages?t=' + Date.now());
             xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(data));
@@ -232,7 +248,7 @@
                         }
                     }
                     else {
-                        alert('请刷新重试！');
+                        alert(JSON.parse(xhr.response).msg);
                     }
                 }
             }
@@ -284,7 +300,7 @@
                 //存入数据
                 var data = { pageName: newproject, userID: userID };
                 //发出POST请求
-                xhr.open("POST", '/api/createPage?t=' + Date.now());
+                xhr.open("POST", 'https://lowcode.fly.dev/api/createPage?t=' + Date.now());
                 xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify(data));
@@ -317,42 +333,51 @@
         //编辑项目 跳转
         function makeedit(pageID) {
             return function edit() {
-                location.href = '/edit?userID=' + userID + '&pageID=' + pageID;
+                location.href = 'https://lowcode.fly.dev/edit?userID=' + userID + '&pageID=' + pageID;
             }
         }
 
         //删除项目
         function makedelete(pageID) {
             return function deleteProject() {
-                //存入数据
-                var data = { userID: userID, pageID: pageID };
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/api/deletePage?t=' + Date.now());
-                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify(data));
-                xhr.onreadystatechange = function () {
-                    //判断 （服务器返回了所有的结果）
-                    if (xhr.readyState === 4) {
-                        //判断状态响应码 200 404 403 401 500......
-                        if (xhr.status === 200) {
-                            if (JSON.parse(xhr.response).msg === 'OK') {
+                document.getElementById('confirmdele').style.display = '';
+                var nodele = document.getElementById('nodele');
+                var confirmbtn = document.getElementById('confirmbtn');
+                //返回
+                nodele.onclick = function () {
+                    document.getElementById('confirmdele').style.display = 'none';
+                }
+                //确认删除
+                confirmbtn.onclick = function () {
+                    //存入数据
+                    var data = { userID: userID, pageID: pageID };
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://lowcode.fly.dev/api/deletePage?t=' + Date.now());
+                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(data));
+                    xhr.onreadystatechange = function () {
+                        //判断 （服务器返回了所有的结果）
+                        if (xhr.readyState === 4) {
+                            //判断状态响应码 200 404 403 401 500......
+                            if (xhr.status === 200) {
+                                if (JSON.parse(xhr.response).msg === 'OK') {
 
-                                alert('删除成功!');
+                                    alert('删除成功!');
+                                    location.reload();
+
+                                }
+                            }
+                            else {
+                                alert('请重试!');
                                 location.reload();
-
                             }
                         }
-                        else {
-                            alert('请重试!');
-                            location.reload();
-                        }
-                    }
 
+                    }
                 }
             }
         }
-
         //重命名项目
         function makerename(pageID) {
 
@@ -370,7 +395,7 @@
                         //存入数据
                         var data = { userID: userID, pageID: pageID, pageName: newname };
                         var xhr = new XMLHttpRequest();
-                        xhr.open('POST', '/api/renamePage?t=' + Date.now());
+                        xhr.open('POST', 'https://lowcode.fly.dev/api/renamePage?t=' + Date.now());
                         xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify(data));
