@@ -14,7 +14,7 @@ const propsStyle = {
 
     boxSizing: ['border-box', 'content-box'],
     position: ['relative', 'absolute', 'static', 'fixed'],
-    display: ['flex', 'inline-flex', 'inline'],
+    display: ['flex', 'inline-flex', 'inline', 'block'],
     flexDirection: ['row', 'column'],
     flexWrap: ['wrap', 'nowrap'],
     borderStyle: ['solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'insert', 'outset'],
