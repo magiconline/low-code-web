@@ -236,7 +236,9 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
                 </div>
 
                 <div className="editor-header-right-box">
-                    <button className="editor-header-button-right edit-button" onClick={() => setEditMode(!editMode)} >切换编辑/预览</button>
+                    <button className="editor-header-button-right edit-button" onClick={() => setEditMode(!editMode)} >
+                    <svg t="1661338746290" className="icon-trans" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2312" width="24" height="24"><path d="M956.994933 307.22722c4.950755-11.95017 2.214435-25.705452-6.931876-34.851763L799.528576 121.840976l-45.227064 45.227064 95.941096 95.941096-722.30068 0 0 63.960731 799.507086 0C940.384627 326.969866 952.046225 319.179436 956.994933 307.22722zM959.430402 646.774543L159.923316 646.774543c-12.935614 0-24.596188 7.791453-29.54592 19.741623-4.950755 11.95017-2.214435 25.705452 6.931876 34.851763l150.534482 150.534482 45.227064-45.226041-95.941096-95.941096 722.30068 0L959.430402 646.774543z" p-id="2313"></path></svg>
+                        {editMode? '当前为编辑模式':'当前为预览模式'}</button>
                     <button className="editor-header-button-right save-button" onClick={saveSchema}>保存<Toaster /></button>
                     <a className="editor-header-button-right publish-button" href={"https://lowcode.fly.dev/view/" + pageInfo.pageID}>发布</a>
                 </div>

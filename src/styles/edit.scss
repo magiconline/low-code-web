@@ -138,6 +138,13 @@
 
           &.edit-button{
             background-color: #FFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width:180px;
+            &:active{
+              background-color: #c5d3fd;
+            }
 
           }
 
