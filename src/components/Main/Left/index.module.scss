@@ -31,26 +31,36 @@
   
   .editorLeftItem {
     display: flex;
-    flex-wrap: wrap;
-    height: 32px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 56px;
     border: 1.5px solid #BFC3F2;
     border-radius: 8px;
     text-align: center;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: rgb(253, 253, 255);
     color: #000CF5;
     font-family: Geneva;
+    font-size: 18px;
     cursor: grab;
+    padding:8px 12px 8px 12px;
+
+    .icon{
+      width:36px; 
+      height:38px;
+      fill:#BFC3F2;
+      align-items: center;
+
+    }
 
     &:hover {
       display: flex;
-      flex-wrap: wrap;
-      height: 32px;
+      flex-wrap: nowrap;
+      height: 56px;
       border: 3px solid #000CF5;
       border-radius: 8px;
       text-align: center;
-      justify-content: center;
       align-items: center;
       background-color: rgb(255, 255, 255);
       font-family: Geneva;

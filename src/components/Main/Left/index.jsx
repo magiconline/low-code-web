@@ -23,14 +23,20 @@ export default function Left() {
           <summary>布局</summary>
           {
             componentlayoutList.map((component, index) =>
-
-              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
+              <div  key={index} style={{ margin: '16px' }}>
                 {/* <DragComponent key={index}{...component}></DragComponent> */}
                 <div
+                  className={style.editorLeftItem}
+                  title={component.props.info}
                   draggable
                   onDragStart={(e) => handle_dragStart(e, component.type)}
                 >
+                  <div className={style.icon}>
+                  {component.props.svg}
+                  </div>
+                  <div>
                   {component.props.name}
+                  </div>
                 </div>
               </div>
             )
@@ -38,23 +44,27 @@ export default function Left() {
         </details>
       </section>
 
-
       <section className={style.editorLeftText}>
         <details open>
-          <summary>
-  
-            文本</summary>
+          <summary>文本</summary>
           {
             componenttexttList.map((component, index) =>
-              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
-                {/* <DragComponent key={index}{...component}></DragComponent> */}
+              <div key={index} style={{ margin: '16px' }}>
                 <div
+                  title={component.props.info}
+                  className={style.editorLeftItem}
                   draggable
                   onDragStart={(e) => handle_dragStart(e, component.type)}
                 >
+                  <div className={style.icon}>
+                  {component.props.svg}
+                  </div>
+                  <div>
                   {component.props.name}
+                  </div>
                 </div>
               </div>
+
             )
           }
         </details>
@@ -65,15 +75,21 @@ export default function Left() {
           {
             componentmultimediaList.map((component, index) =>
 
-              <div className={style.editorLeftItem} key={index} style={{ margin: '16px' }}>
-                {/* <DragComponent key={index}{...component}></DragComponent> */}
-                <div
-                  draggable
-                  onDragStart={(e) => handle_dragStart(e, component.type)}
-                >
-                  {component.props.name}
-                </div>
+            <div key={index} style={{ margin: '16px' }}>
+            <div
+              title={component.props.info}
+              className={style.editorLeftItem}
+              draggable
+              onDragStart={(e) => handle_dragStart(e, component.type)}
+            >
+              <div className={style.icon}>
+              {component.props.svg}
               </div>
+              <div>
+              {component.props.name}
+              </div>
+            </div>
+          </div>
             )
           }
         </details>

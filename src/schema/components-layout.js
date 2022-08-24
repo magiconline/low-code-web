@@ -4,28 +4,10 @@ export default [
 
         props: {
             name: '<div>',
-            style: {
-                boxSizing:'border-box',
-                margin:'0px',
-                padding:'0px',
-                position:'relative',
-                width:'',
-                height:'',
-                display:'flex',
-                flexDirection:'row',
-                flexWrap:'wrap',
-                justifyContent:'space-between',
-                alignItems:'center',
-                alignSelf:'',
-                zIndex:'',
-                backgroundColor:''
-
-            }
+            info:'用布局div盒子划分网页区域',
+            svg:<svg t="1661328394788" width='32px' className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7375"><path d="M865 64 223 64c-87.7 0-159 71.3-159 159l0 642c0 87.7 71.3 159 159 159l642 0c87.7 0 159-71.3 159-159l0-642C1024 135.3 952.7 64 865 64zM223 128l642 0c52.4 0 95 42.6 95 95l0 94.9L128 317.9l0-94.9C128 170.6 170.6 128 223 128zM128 865 128 381.8l256 0 0 578.1L223 959.9C170.6 960 128 917.4 128 865zM865 960 448 960 448 381.8l512 0 0 483.1C960 917.4 917.4 960 865 960z" p-id="7376"></path></svg>
         },
-        children: [
-            'div'
-        
-        ]
+
     }
 
 ]
