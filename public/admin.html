@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人管理页面</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./admin.css">
+</head>
+
+<body>
+    <!-- 顶部logo -->
+    <div class="logo_add">
+        <img class="logo" src="./logo.png" />
+        <button class="add" onclick="clickcreate()">新增项目</button>
+        <button class="back" id="exit" onclick="exit()">退出登录</button>
+    </div>
+    <!-- 项目内容 -->
+    <div id="particles-js">
+        <div class="table" id="projecttable">
+
+        </div>
+    </div>
+    <!-- 创建项目的遮罩层 -->
+    <div class="bg" id="bg">
+        <!-- 交互框 -->
+        <div class="create">
+            <div class="header"></div>
+            <div id="projname">
+                <p>
+                    请输入项目名称：
+                </p>
+                <p>
+                    <input type="text" class="textinput" id="projectname">
+                    <!-- 名称重复 -->
+                <div id="empty" class="empty">
+                    <p>
+                        项目名称不能为空！
+                    </p>
+                </div>
+                </p>
+
+                <p>
+                    <button type="button" class="btn" id="createbtn" onclick="ensure()">确认创建</button>
+                    <button type="button" class="btn" onclick="back()">返回</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 重命名遮罩层 -->
+    <div class="bg" id="rename">
+        <!-- 交互框 -->
+        <div class="rename">
+            <div class="header"></div>
+            <div id="projnewname">
+                <p>
+                    请输入项目的新名称：
+                </p>
+                <p>
+                    <input type="text" class="textinput" id="renameinput">
+                    <!-- 名称重复 -->
+                <div id="renameempty" class="empty">
+                    <p>
+                        项目名称不能为空！
+                    </p>
+                </div>
+                </p>
+                <p>
+                    <button type="button" class="btn" id="renamebtn">确认修改</button>
+                    <button type="button" class="btn" id="cancel">取消</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认删除提示 -->
+    <div class="bg" id="confirmdele">
+        <!-- 交互框 -->
+        <div class="dele">
+            <div class="header"></div>
+            
+                <p>
+                    <button type="button" class="btn" id="confirmbtn">确认删除</button>
+                    <button type="button" class="btn" id="nodele">返回</button>
+                </p>
+            
+        </div>
+    </div>
+
+    <!-- 超时弹窗 -->
+    <div id="timeout" class="bg">
+        <div class="timeout">
+            <div class="header">
+                <div class="close" onclick="tclose()">x</div>
+            </div>
+            <p>您的请求已超时！请重试！</p>
+        </div>
+    </div>
+
+    <!-- 网络异常 -->
+    <div id="networkerror" class="bg">
+        <div class="networkerror">
+            <div class="header">
+                <div class="close" onclick="nclose()">x</div>
+            </div>
+            <p>您的网络有误！请重试！</p>
+        </div>
+    </div>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./particles.min.js"></script>
+    <script src="./app.js"></script>
+    <script>
+        document.getElementById('timeout').style.display = 'none';
+        document.getElementById('networkerror').style.display = 'none';
+        document.getElementById('bg').style.display = 'none';
+        document.getElementById('empty').style.display = 'none';
+        document.getElementById('rename').style.display = 'none';
+        document.getElementById('renameempty').style.display = 'none';
+        document.getElementById('confirmdele').style.display = 'none';
+        //获取链接中的userID
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        //var userID = getQueryString("userID");
+        //测试用
+        var userID = '62f9f5b51b7de413bf2ae948';
+
+        //定义数组接收参数
+        var pages = new Array();
+
+        //获取项目表元素
+        //var projecttable = document.getElementById('projecttable');
+
+        //首先获取项目
+        listProjects();
+        //检测有没有删除
+        //deletecheck();
+
+        //超时函数
+        function iftimeout() {
+            document.getElementById('timeout').style.display = '';
+        }
+        //网络错误函数
+        function iferror() {
+            document.getElementById('networkerror').style.display = '';
+        }
+        //关闭超时弹框
+        function tclose() {
+            document.getElementById('timeout').style.display = 'none';
+        }
+        //关闭网误弹框
+        function nclose() {
+            document.getElementById('networkerror').style.display = 'none';
+        }
+
+        //退出登录后 跳转画面到登录界面中
+        function exit() {
+            location.href = 'index.html';
+        }
+
+        //获取所有项目
+        function listProjects() {
+
+            //存入数据
+            var data = { userID: userID };
+            //发出请求
+            var xhr = new XMLHttpRequest();
+
+            xhr.timeout = 5000;
+            //超时响应回调函数
+            xhr.ontimeout = function () {
+                iftimeout();
+                location.reload();
+            }
+            //网络异常回调函数
+            xhr.onerror = function () {
+                iferror();
+                location.reload();
+            }
+
+            xhr.open("POST", 'https://lowcode.fly.dev/api/listPages?t=' + Date.now());
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+            xhr.onreadystatechange = function () {
+                //判断 （服务器返回了所有的结果）
+                if (xhr.readyState === 4) {
+                    //判断状态响应码 200 404 403 401 500......
+                    if (xhr.status === 200) {
+                        //获取成功
+                        if (JSON.parse(xhr.response).code == '0') {
+                            //将返回参数传到pages中
+                            pages = JSON.parse(xhr.response).pages;
+                            var par = document.getElementById('projecttable')
+                            for (var i = 0; i < pages.length; i++) {
+
+                                //创建item框
+                                var item = document.createElement('div');
+                                item.className = 'item';
+                                item.id = 'projectdiv';
+                                par.appendChild(item);
+
+                                //创建project框
+                                var project = document.createElement('div');
+                                project.className = 'project';
+                                project.id = 'erypro';
+                                item.appendChild(project);
+
+                                //创建text框
+                                var text = document.createElement('text');
+                                text.className = 'title';
+                                text.id = 'title';
+                                text.innerHTML = pages[i].pageName;
+                                project.appendChild(text);
+
+                                //创建编辑按钮
+                                var edit = document.createElement('button');
+                                edit.className = 'editbtn';
+                                edit.id = pages[i].pageID;
+                                edit.innerHTML = '编辑';
+                                edit.onclick = makeedit(pages[i].pageID);
+                                project.appendChild(edit);
+
+                                //创建重命名按钮
+                                var rename = document.createElement('button');
+                                rename.className = 'renamebtn';
+                                rename.id = pages[i].pageID;
+                                rename.innerHTML = '重命名';
+                                rename.onclick = makerename(pages[i].pageID);
+                                project.appendChild(rename);
+
+                                //创建删除按钮
+                                var dele = document.createElement('button');
+                                dele.className = 'deletebtn';
+                                dele.id = pages[i].pageID;
+                                dele.onclick = makedelete(pages[i].pageID);
+                                dele.innerHTML = '删除';
+                                project.appendChild(dele);
+                            }
+                        }
+                    }
+                    else {
+                        alert(JSON.parse(xhr.response).msg);
+                    }
+                }
+            }
+        }
+
+
+        //点击创建时修改相关样式
+        function clickcreate() {
+            document.getElementById('bg').style.display = '';
+        }
+
+        //确认创建
+        function ensure() {
+            //修改样式
+            document.getElementById('bg').style.display = 'none';
+            //调用创建函数
+            createproject();
+        }
+
+        //点击返回时修改相关样式
+        function back() {
+            document.getElementById('bg').style.display = 'none';
+        }
+
+        //创建新项目
+        function createproject() {
+            //获取输入的项目名称
+            var newproject = document.getElementById('projectname').value;
+            //如果检测到没输入就回调
+            if (newproject == "") {
+                clickcreate();
+                document.getElementById('empty').style.display = '';
+            }
+            else {
+                //新建xhr请求
+                var xhr = new XMLHttpRequest();
+                //设置定时器2s
+                xhr.timeout = 5000;
+                //超时响应回调函数
+                xhr.ontimeout = function () {
+                    iftimeout();
+                    location.reload();
+                }
+                //网络异常回调函数
+                xhr.onerror = function () {
+                    iferror();
+                    location.reload();
+                }
+                //存入数据
+                var data = { pageName: newproject, userID: userID };
+                //发出POST请求
+                xhr.open("POST", 'https://lowcode.fly.dev/api/createPage?t=' + Date.now());
+                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify(data));
+                xhr.onreadystatechange = function () {
+                    //判断 （服务器返回了所有的结果）
+                    if (xhr.readyState === 4) {
+                        //响应成功
+                        if (xhr.status === 200) {
+                            //创建成功
+                            if (JSON.parse(xhr.response).code === 0) {
+                                alert('创建成功！');
+                                //刷新页面
+                                location.reload();
+                            }
+                            else if (JSON.parse(xhr.response).code === 3) {
+                                alert('项目名称重复！请重新输入！');
+                                location.reload();
+                            }
+                            else {
+                                alert('您的网络似乎出现了点小问题，请重试！');
+                                location.reload();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //编辑项目 跳转
+        function makeedit(pageID) {
+            return function edit() {
+                location.href = 'https://lowcode.fly.dev/edit?userID=' + userID + '&pageID=' + pageID;
+            }
+        }
+
+        //删除项目
+        function makedelete(pageID) {
+            return function deleteProject() {
+                document.getElementById('confirmdele').style.display = '';
+                var nodele = document.getElementById('nodele');
+                var confirmbtn = document.getElementById('confirmbtn');
+                //返回
+                nodele.onclick = function () {
+                    document.getElementById('confirmdele').style.display = 'none';
+                }
+                //确认删除
+                confirmbtn.onclick = function () {
+                    //存入数据
+                    var data = { userID: userID, pageID: pageID };
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://lowcode.fly.dev/api/deletePage?t=' + Date.now());
+                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(data));
+                    xhr.onreadystatechange = function () {
+                        //判断 （服务器返回了所有的结果）
+                        if (xhr.readyState === 4) {
+                            //判断状态响应码 200 404 403 401 500......
+                            if (xhr.status === 200) {
+                                if (JSON.parse(xhr.response).msg === 'OK') {
+
+                                    alert('删除成功!');
+                                    location.reload();
+
+                                }
+                            }
+                            else {
+                                alert('请重试!');
+                                location.reload();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        //重命名项目
+        function makerename(pageID) {
+
+            return function rename() {
+                document.getElementById('rename').style.display = '';
+                document.getElementById('renameempty').style.display = 'none';
+                var renamebtn = document.getElementById('renamebtn');
+                renamebtn.onclick = function () {
+                    var newname = document.getElementById('renameinput').value;
+                    //如果检测到没输入就回调
+                    if (newname == "") {
+                        document.getElementById('renameempty').style.display = '';
+                    }
+                    else {
+                        //存入数据
+                        var data = { userID: userID, pageID: pageID, pageName: newname };
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'https://lowcode.fly.dev/api/renamePage?t=' + Date.now());
+                        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.send(JSON.stringify(data));
+                        xhr.onreadystatechange = function () {
+                            //判断 （服务器返回了所有的结果）
+                            if (xhr.readyState === 4) {
+                                //判断状态响应码 200 404 403 401 500......
+                                if (xhr.status === 200) {
+                                    if (JSON.parse(xhr.response).code === 0) {
+
+                                        alert('重命名成功!');
+                                        location.reload();
+
+                                    }
+                                }
+                                else {
+                                    alert('请重试!');
+                                    location.reload();
+                                }
+                            }
+
+                        }
+                    }
+                }
+                var cancel = document.getElementById('cancel');
+                cancel.onclick = function () {
+                    document.getElementById('rename').style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
