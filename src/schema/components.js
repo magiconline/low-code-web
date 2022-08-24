@@ -77,7 +77,7 @@ export default [
         type: 'input',
         props: {
             name: '<input>',
-            defaultValue: '请输入文本',
+            value: '请输入文本',
             style: {
 
                 width: '',
@@ -100,7 +100,7 @@ export default [
 
         props: {
             name: '<textarea>',
-            defaultValue: '请输入段落',
+            value: '请输入段落',
             style: {
                 width: '200px',
                 height: '100px',
@@ -172,7 +172,7 @@ export default [
         props: {
             name: '<a>',
             label: '链接',
-            href: '#',
+            href: 'https://www.bilibili.com/',
             style: {
                 cursor: 'pointer',
                 textDecoration: 'none',

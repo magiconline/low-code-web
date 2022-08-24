@@ -288,7 +288,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
 
     // 编辑时禁用<a>点击效果
     if (props.type === 'a') {
-        newProps.style['pointer-events'] = 'none'
+        newProps.style['pointerEvents'] = 'none'
     }
 
     // 编辑时禁用input 和 textarea标签输入功能（设置只读）

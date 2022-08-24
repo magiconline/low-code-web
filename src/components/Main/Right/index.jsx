@@ -3,12 +3,13 @@ import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 import StyleSetter from "./StyleSetter";
 import style from './index.module.scss'
+import Event from './event'
 
 const { TabPane } = Tabs;
 
 export default function Editor({ selectComponent, pageInfo, setPageInfo }) {
     // 右侧属性配置
-    if (selectComponent) {
+    if (selectComponent >1) {
         return (
             <div className={style.editorRight}>
                 {/* <div className="setter-tabs-list"> */}
@@ -18,10 +19,10 @@ export default function Editor({ selectComponent, pageInfo, setPageInfo }) {
 
                     </TabPane>
                     <TabPane tab="代码" key="2">
-                        {/* <ReactJSON src={schema}></ReactJSON> */}
+                        <div className={style.json}>{JSON.stringify(pageInfo.page)}</div>
                     </TabPane>
-                    <TabPane tab="事件" key="3">
-                        <textarea className="tab-text"></textarea>
+                    <TabPane tab="事件" key="3" className={style.event}>
+                    <Event pageInfo={pageInfo} selectComponent={selectComponent} setPageInfo={setPageInfo} />
                     </TabPane>
                 </Tabs>
                 {/* </div> */}
@@ -33,6 +34,29 @@ export default function Editor({ selectComponent, pageInfo, setPageInfo }) {
             </div>
         )
     } else {
-        return null
+        return (
+            <div className={style.editorRight}>
+                <div className={style.info}>
+                    <span>pageID:</span>
+                    {pageInfo.pageID}
+                </div>
+                <div className={style.info}>
+                    <span>userID:</span>
+                    {pageInfo.userID}
+                </div>
+                <div className={style.info}>
+                    <span>version:</span>
+                    {pageInfo.version}
+                </div>
+                <div className={style.info}>
+                    <span>pageName:</span>
+                    {pageInfo.pageName}
+                </div>
+                <div className={style.info}>
+                    <span>maxID:</span>
+                    {pageInfo.maxID}
+                </div>
+            </div>)
     }
+    
 }
