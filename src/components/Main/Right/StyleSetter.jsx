@@ -27,6 +27,9 @@ const propsStyle = {
     fontStyle: ['normal', 'Italic'],
     cursor: ['default', 'pointer'],
     pointerEvents: ['auto', 'none'],
+    backgroundSize:['cover','contain']
+
+
 
 }
 

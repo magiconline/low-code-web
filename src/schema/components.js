@@ -16,7 +16,12 @@ export default [
                 textAlign: 'left',
                 textDecoration: 'none',
                 flexWrap: 'wrap',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
 
 
             },
@@ -39,7 +44,12 @@ export default [
                 fontStyle: 'normal',
                 textAlign: 'left',
                 textDecoration: 'none',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
 
             },
         },
@@ -64,7 +74,12 @@ export default [
                 borderRadius: '6px',
                 fontWeight: 'bold',
                 textAlign: 'center',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
             },
             onClick: `(e) => {alert('button clicked')}`,
             onDoubleClick: `(e) => {alert('button double clicked')}`
@@ -87,7 +102,12 @@ export default [
                 borderWidth: '1px',
                 borderRadius: '4px',
                 backgroundColor: 'white',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
 
             },
             onChange: `(e) => {console.log(e)}`
@@ -109,7 +129,12 @@ export default [
                 borderWidth: '1px',
                 borderRadius: '4px',
                 backgroundColor: '',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
 
             },
             onChange: `(e) => {console.log(e)}`
@@ -129,6 +154,10 @@ export default [
                 margin: '0px',
                 padding: '0px',
                 position: 'relative',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
                 width: '',
                 height: '',
                 display: 'flex',
@@ -140,6 +169,9 @@ export default [
                 alignSelf: 'center',
                 zIndex: '1',
                 backgroundColor: '#ffffff',
+                backgroundImage:'url("")',
+                backgroundSize:'contain',
+                opacity:"",
                 zIndex: ''
 
 
@@ -159,7 +191,12 @@ export default [
                 textAlign: 'left',
                 fontSize: '32px',
                 fontStyle: 'normal',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
             }
         },
         children: [
@@ -181,6 +218,11 @@ export default [
                 color: 'blue',
                 zIndex: '',
                 pointerEvents: 'auto',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
             }
         },
         children: [
@@ -199,7 +241,12 @@ export default [
             style: {
                 width: '200px',
                 height: '',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
             }
         },
         children: [
@@ -218,7 +265,12 @@ export default [
             style: {
                 width: '200px',
                 height: '',
-                zIndex: ''
+                zIndex: '',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+                opacity:'',
             }
 
         },
