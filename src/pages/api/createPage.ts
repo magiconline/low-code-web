@@ -49,7 +49,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 name: '根组件',
                                 style: {
                                     backgroundColor: "white",
-                                    display: 'flex'
+                                    display: 'flex',
+                                    width: '100%',
+                                    height: '100%'
                                 }
                             },
                             children: [
