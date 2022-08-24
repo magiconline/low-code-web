@@ -125,7 +125,6 @@ export default [
         props: {
             name: '<div>',
             style: {
-
                 boxSizing: 'border-box',
                 margin: '0px',
                 padding: '0px',
@@ -135,6 +134,7 @@ export default [
                 display: 'flex',
                 flexDirection: 'column',
                 flexWrap: 'wrap',
+                flex: '',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 alignSelf: 'center',
