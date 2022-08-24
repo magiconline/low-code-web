@@ -35,6 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     // userID与pageName有唯一索引，重名会异常
 
                     // 创建空Page
+                    // TODO 修改默认创建的布局
                     const result = await pageCollection.insertOne({
                         _id: pageID, // 存储时pageID转为_id
                         userID: new ObjectId(userID),
@@ -47,11 +48,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 id: 1,
                                 name: '根组件',
                                 style: {
-                                    backgroundColor: "grey"
+                                    backgroundColor: "white",
+                                    diplay: 'flex'
                                 }
                             },
                             children: [
-                                'hello world'
                             ]
                         }
                     })

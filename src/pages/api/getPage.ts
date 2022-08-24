@@ -35,18 +35,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         'msg': '参数错误，不存在的userID或pageID'
                     })
                 }
-            } else if (pageID === undefined) {
+            } else {
                 // 测试用空白页面
                 res.json({
-                    code: 0,
-                    msg: '测试数据',
-                    page: defaultPage
-                })
-            } else {
-                // 参数错误
-                res.json({
-                    'code': 1,
-                    'msg': '参数错误'
+                    code: 1,
+                    msg: '参数错误'
                 })
             }
 
