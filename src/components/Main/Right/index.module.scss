@@ -40,6 +40,30 @@
     }
 
   }
+  .info{
+    // text-align: center;
+    span{
+        display: inline-block;
+        // width: 80px;
+        text-align: right;
+        margin-left: 20px;
+        margin-right: 10px;
+        padding-top: 10px;
+    }
+}
+
+  .event{
+    // text-align: center;
+    margin: 0 10px;
+    .tabText{
+        width: 90%;
+        height: 100px;
+        border: 1px solid skyblue;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 5px auto;
+    }
+}
 
   
 }
