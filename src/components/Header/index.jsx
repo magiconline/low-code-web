@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 
 
-export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, setCanvasSize, editMode, setEditMode }) {
+export function Header({ selectComponent, setSelectComponent, pageInfo, setPageInfo, canvasSize, setCanvasSize, editMode, setEditMode }) {
     // 每次调用pageInfo可能会变化，记录pageInfo
     // 撤销、恢复使用setPageInfo
     // console.log({ ...pageInfo });//获取schema数据
@@ -42,6 +42,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
             setIndex(index - 2)  //当点击时也会追加新的pageInfo，因此需要index减两次
             let newPageInfoHistory = deepCopy(pageInfoHistory)
             // newPageInfoHistory.length = index
+            setSelectComponent(0)
             setPageInfoHistory([...newPageInfoHistory])
             setPageInfo({ ...newPageInfoHistory[index - 1] })
         }
@@ -53,6 +54,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
     const redo = () => {
         let newPageInfoHistory = deepCopy(pageInfoHistory)
         if (index + 1 < newPageInfoHistory.length && pageInfoHistory[pageInfoHistory.length - 1] !== pageInfo) {
+            setSelectComponent(0)
             setPageInfoHistory([...newPageInfoHistory])
             setPageInfo({ ...newPageInfoHistory[index + 1] })
         }
@@ -63,6 +65,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
     const clearClick = () => {
         let newPageInfo = pageInfo
         newPageInfo.page.children = []
+        setSelectComponent(0)
         setPageInfo({ ...newPageInfo })
     }
 
@@ -89,6 +92,7 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
         // console.log('删除');
         let newPageInfo = pageInfo
         let arr = newPageInfo.page.children
+        setSelectComponent(0)
         selectDelete(arr, newPageInfo)
     }
 
@@ -205,40 +209,40 @@ export function Header({ selectComponent, pageInfo, setPageInfo, canvasSize, set
                 <div style={{ color: '#606266', marginLeft: '10px ' }} className='editor-header-canvas-setter'>
 
                     <div className="setter-box">
-                    <span>自定义尺寸:</span>
-                    <input
-                        className="header-canvas-setter-input"
-                        value={canvasSize.width}
-                        onChange={(e) => setCanvasSize({ width: e.target.value, height: canvasSize.height })}
+                        <span>自定义尺寸:</span>
+                        <input
+                            className="header-canvas-setter-input"
+                            value={canvasSize.width}
+                            onChange={(e) => setCanvasSize({ width: e.target.value, height: canvasSize.height })}
 
 
-                    />
-                    <span> * </span>
-                    <input
-                        className="header-canvas-setter-input"
-                        value={canvasSize.height}
-                        onChange={(e) => setCanvasSize({ width: canvasSize.width, height: e.target.value })}
+                        />
+                        <span> * </span>
+                        <input
+                            className="header-canvas-setter-input"
+                            value={canvasSize.height}
+                            onChange={(e) => setCanvasSize({ width: canvasSize.width, height: e.target.value })}
 
-                    />
+                        />
                     </div>
 
                     <div className="setter-box">
-                    <label htmlFor="canvas-select">画布尺寸规格:</label>
-                    <select id="canvas-select" onChange={(e) => setCanvasSize({ width: e.target.value.split('*')[0], height: e.target.value.split('*')[1] })} className="header-canvas-setter-select">
-                        <option value="800*1000" >PC:800*1000px</option>
-                        <option value="1024*768" >PC:1024*768px</option>
-                        <option value="1280*768" >PC:1280*768px</option>
-                        <option value="1920*960" >PC:1920*960px</option>
-                        <option value="375*667" >iPhone SE:375*667px</option>
-                        <option value="360*740" >Samsung:360*740px</option>
-                    </select>
+                        <label htmlFor="canvas-select">画布尺寸规格:</label>
+                        <select id="canvas-select" onChange={(e) => setCanvasSize({ width: e.target.value.split('*')[0], height: e.target.value.split('*')[1] })} className="header-canvas-setter-select">
+                            <option value="800*1000" >PC:800*1000px</option>
+                            <option value="1024*768" >PC:1024*768px</option>
+                            <option value="1280*768" >PC:1280*768px</option>
+                            <option value="1920*960" >PC:1920*960px</option>
+                            <option value="375*667" >iPhone SE:375*667px</option>
+                            <option value="360*740" >Samsung:360*740px</option>
+                        </select>
                     </div>
                 </div>
 
                 <div className="editor-header-right-box">
                     <button className="editor-header-button-right edit-button" onClick={() => setEditMode(!editMode)} >
-                    <svg t="1661338746290" className="icon-trans" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2312" width="24" height="24"><path d="M956.994933 307.22722c4.950755-11.95017 2.214435-25.705452-6.931876-34.851763L799.528576 121.840976l-45.227064 45.227064 95.941096 95.941096-722.30068 0 0 63.960731 799.507086 0C940.384627 326.969866 952.046225 319.179436 956.994933 307.22722zM959.430402 646.774543L159.923316 646.774543c-12.935614 0-24.596188 7.791453-29.54592 19.741623-4.950755 11.95017-2.214435 25.705452 6.931876 34.851763l150.534482 150.534482 45.227064-45.226041-95.941096-95.941096 722.30068 0L959.430402 646.774543z" p-id="2313"></path></svg>
-                        {editMode? '当前为编辑模式':'当前为预览模式'}</button>
+                        <svg t="1661338746290" className="icon-trans" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2312" width="24" height="24"><path d="M956.994933 307.22722c4.950755-11.95017 2.214435-25.705452-6.931876-34.851763L799.528576 121.840976l-45.227064 45.227064 95.941096 95.941096-722.30068 0 0 63.960731 799.507086 0C940.384627 326.969866 952.046225 319.179436 956.994933 307.22722zM959.430402 646.774543L159.923316 646.774543c-12.935614 0-24.596188 7.791453-29.54592 19.741623-4.950755 11.95017-2.214435 25.705452 6.931876 34.851763l150.534482 150.534482 45.227064-45.226041-95.941096-95.941096 722.30068 0L959.430402 646.774543z" p-id="2313"></path></svg>
+                        {editMode ? '当前为编辑模式' : '当前为预览模式'}</button>
                     <button className="editor-header-button-right save-button" onClick={saveSchema}>保存<Toaster /></button>
                     <a className="editor-header-button-right publish-button" href={"https://lowcode.fly.dev/view/" + pageInfo.pageID}>发布</a>
                 </div>

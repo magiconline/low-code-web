@@ -45,7 +45,7 @@ export default function Edit() {
         // 加载成功
         return (
             <div className="editor-wrapper">
-                <Header selectComponent={selectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} editMode={editMode} setEditMode={setEditMode} />
+                <Header selectComponent={selectComponent} setSelectComponent={setSelectComponent} pageInfo={pageInfo} setPageInfo={setPageInfo} canvasSize={canvasSize} setCanvasSize={setCanvasSize} editMode={editMode} setEditMode={setEditMode} />
                 <Main
                     selectComponent={selectComponent}
                     setSelectComponent={setSelectComponent}
