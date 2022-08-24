@@ -15,7 +15,7 @@ export default function Editor({ selectComponent, pageInfo, setPageInfo }) {
                 {/* <div className="setter-tabs-list"> */}
                 <Tabs className="tabs-list" centered defaultActiveKey="1">
                     <TabPane tab="样式" key="1">
-                        <StyleSetter pageInfo={pageInfo} selectComponent={selectComponent} setPageInfo={setPageInfo} />
+                        <StyleSetter className='style-list' pageInfo={pageInfo} selectComponent={selectComponent} setPageInfo={setPageInfo} />
 
                     </TabPane>
                     <TabPane tab="代码" key="2">
