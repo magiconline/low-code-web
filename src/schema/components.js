@@ -78,6 +78,7 @@ export default [
         props: {
             name: '<input>',
             value: '请输入文本',
+            type: 'text',
             style: {
 
                 width: '',
