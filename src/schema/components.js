@@ -170,6 +170,7 @@ export default [
                 alignSelf: 'center',
                 zIndex: '1',
                 backgroundColor: '#ffffff',
+                color:'',
                 backgroundImage: 'url("")',
                 backgroundSize: 'contain',
                 opacity: "",
