@@ -11,27 +11,13 @@ interface Props {
 
 export default function ViewPage({ page, code }: Props) {
 
-    // 读取pageID
-    // const router = useRouter()
-    // const { pageID } = router.query
-
-    // // 读取pageInfo
-    // const { data, isLoading, isError } = usePageInfo(pageID)
-
-    // if (isLoading) {
-    //     return <div>{`加载中`}</div>
-    // }
-
-    // if (isError || data.code !== 0) {
-    //     return <div>{`错误: ${isError} ${data.msg}`}</div>
-    // }
-
-    // const pageInfo = new Page(data.page)
-
     switch (code) {
         case 0: {
             return (
-                <Component {...page}></Component>
+                <div style={{ width: '100vw', height: '100vh' }}>
+                    <Component {...page}></Component>
+                </div>
+
             )
         }
 
@@ -66,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         if (result) {
             return {
                 props: {
+                    code: 0,
                     page: result.page
                 }
             }
