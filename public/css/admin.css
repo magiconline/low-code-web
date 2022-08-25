@@ -20,12 +20,13 @@ body {
 
 .logo_add {
 	height: 60px;
-	border-bottom: #C0C0C0 2px solid;
+	/* border-bottom: #C0C0C0 2px solid; */
 	background: rgba(255, 255, 255, .7);
 	backdrop-filter: blur(10px);
 	position: sticky;
 	top: 0;
 	overflow: auto;
+	box-shadow: 0px 1px 20px 1px rgba(112, 112, 242, 0.2);
 }
 
 .logo_add img {
@@ -34,6 +35,8 @@ body {
 	left: 5px;
 	top: 5px;
 }
+
+
 
 .logo_add .add {
 	position: absolute;
@@ -45,8 +48,8 @@ body {
 	font-size: 15px;
 	margin: 10px 0;
 	color: #fff;
-	background-color: #0638dd;
-	border-radius: 3px;
+	background-color: #4063f0;
+	border-radius: 8px;
 }
 
 .logo_add .add:hover {
@@ -65,8 +68,8 @@ body {
 	font-size: 15px;
 	margin: 10px 0;
 	color: #fff;
-	background-color: #fc3729;
-	border-radius: 3px;
+	background-color: #f9924d;
+	border-radius: 8px;
 }
 
 .logo_add .back:hover {
@@ -84,7 +87,7 @@ body {
 }
 
 .table .item {
-	border: solid 1px gray;
+	border: solid 1.5px rgb(255, 255, 255);
 	border-radius: 5px;
 	display: inline-block;
 	margin: 50px;
@@ -92,8 +95,12 @@ body {
 	background: rgba(255, 255, 255, 0.3);
 	height: 200px;
 	width: 300px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 8px 16px 0px rgba(56, 45, 208, 0.2);
+	
 
+}
+.item:hover{
+	border: solid 1.5px #000CF5;
 }
 
 .table .item .project {
@@ -113,16 +120,17 @@ body {
 
 .editbtn {
 	position: absolute;
-	width: 25%;
-	bottom: 0px;
-	left: 0px;
-	font-size: 16px;
+	width: 20%;
+	bottom: 16px;
+	left: 10%;
+	font-size: 14px;
 	border-radius: 5px;
-	border: solid 1px black;
-	background-color: #0638dd;
+	border: solid 0px black;
+	background-color: #74dc96;
 	color: white;
 	line-height: 25px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+
 }
 
 .editbtn:hover {
@@ -130,20 +138,21 @@ body {
 	color: white;
 	transition: 0.3s;
 	cursor: pointer;
+
 }
 
 .renamebtn {
 	position: absolute;
-	width: 25%;
-	bottom: 0px;
-	left: 37%;
-	font-size: 16px;
+	width: 20%;
+	bottom: 16px;
+	left: 40%;
+	font-size: 14px;
 	border-radius: 5px;
-	border: solid 1px black;
-	background-color: #0638dd;
+	border: solid 0px black;
+	background-color: #4063f0;
 	color: white;
 	line-height: 25px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
 }
 
 .renamebtn:hover {
@@ -154,17 +163,18 @@ body {
 }
 
 .deletebtn {
+	padding:4px 4px;
 	position: absolute;
-	width: 25%;
-	bottom: 0px;
-	right: 0px;
-	font-size: 16px;
+	width: 20%;
+	bottom: 16px;
+	right: 10%;
+	font-size: 14px;
 	border-radius: 5px;
-	border: solid 1px black;
-	background-color: #fc3729;
+	border: solid 0px black;
+	background-color: #f9924d;
 	color: white;
-	line-height: 25px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	/* line-height: 25px; */
+
 }
 
 .deletebtn:hover {
@@ -179,7 +189,7 @@ div.bg {
 	position: fixed;
 	left: 0px;
 	top: 0px;
-	background: gray;
+	background: rgb(244, 244, 250);
 	width: 100%;
 	height: 100%;
 	opacity: 1;
@@ -193,7 +203,8 @@ div.bg {
 p {
 	margin: 10px;
 	text-align: center;
-	font: normal 500 30px '宋体';
+	font: normal 500 20px '宋体';
+	color:#5056cc;
 }
 
 /* 超时弹框 */
@@ -246,12 +257,12 @@ div.close:hover {
 div.create {
 	position: relative;
 	background: #fff;
-	width: 40%;
-	height: 30%;
+	width: 600px;
+	height: 240px;
 	border-radius: 10px;
 	margin: 10% auto;
 	border-color: #000;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 4px 30px 5px rgba(31, 33, 94, 0.1);
 }
 
 /* 重命名框 */
@@ -262,7 +273,7 @@ div.rename {
 	height: 30%;
 	border-radius: 10px;
 	margin: 10% auto;
-	border-color: #000;
+	border-width: 0px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,7 +285,7 @@ div.dele {
 	height: 18%;
 	border-radius: 10px;
 	margin: 10% auto;
-	border-color: #000;
+	border-width: 0px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -292,9 +303,9 @@ div.empty {
 	width: 50%;
 	height: 30px;
 	margin-bottom: none;
-	border: 2px solid gray;
+	border: 1.5px solid #8286d5;
+	border-radius: 6px;
 	transition: 0.5s;
-	outline: black double 1px;
 	font: large 500 20px '宋体';
 }
 
@@ -309,7 +320,7 @@ div.empty {
 /* 两个按钮 确认创建和返回 */
 .btn {
 	line-height: 25px;
-	background-color: gray;
+	background-color: #000CF5;
 	width: 30%;
 	height: 48px;
 	border-radius: 8px;
@@ -317,7 +328,7 @@ div.empty {
 	box-sizing: border-box;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	color: white;
-	border: 1px black solid;
+	border: 0px black solid;
 }
 
 .btn:hover {
