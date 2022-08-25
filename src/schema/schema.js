@@ -13,20 +13,6 @@ class Component {
     }
 }
 
-class MyFunction {
-    constructor(f) {
-        this.name = f.name
-        this.function = f.function
-    }
-}
-
-class Variable {
-    constructor(variable) {
-        this.name = variable.name
-        this.type = variable.type
-        this.value = variable.value
-    }
-}
 
 class Page {
     constructor(res) {

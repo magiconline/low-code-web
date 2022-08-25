@@ -206,12 +206,6 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
                 setPageInfo({ ...newPageInfo })
 
             } else {
-                // TODO 如果目标不可嵌套，则根据y轴坐标判断在上面还是下面添加
-                // TODO 如果是水平布局则比较x轴
-                // console.log('暂时不支持移动组件')
-                // e.target.offset为与editor-main相对像素
-                const offset = e.clientY >= (e.target.offsetTop + e.target.offsetHeight / 2) ? 1 : 0
-                // console.log(offset)
 
                 let newPageInfo = pageInfo
                 let parentID = findParentID(dropID, newPageInfo.page)
