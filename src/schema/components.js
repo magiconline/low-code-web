@@ -6,7 +6,7 @@ export default [
         props: {
             name: '<p>',
             style: {
-
+                position: 'relative',
                 width: '',
                 height: '',
                 color: '#000000',
@@ -35,7 +35,7 @@ export default [
         props: {
             name: '<span>',
             style: {
-
+                position: 'relative',
                 width: '',
                 height: '',
                 color: '#000000',
@@ -62,7 +62,7 @@ export default [
         props: {
             name: '<button>',
             style: {
-
+                position: 'relative',
                 cursor: 'pointer',
                 color: '#ffffff',
                 width: '100px',
@@ -95,7 +95,7 @@ export default [
             defaultValue: '请输入文本',
             type: 'text',
             style: {
-
+                position: 'relative',
                 width: '',
                 height: '',
                 borderColor: 'grey',
@@ -123,6 +123,7 @@ export default [
             name: '<textarea>',
             defaultValue: '请输入段落',
             style: {
+                position: 'relative',
                 width: '200px',
                 height: '100px',
                 borderColor: 'grey',
@@ -187,6 +188,7 @@ export default [
         props: {
             name: '<h>',
             style: {
+                position: 'relative',
                 color: 'black',
                 textAlign: 'left',
                 fontSize: '32px',
@@ -212,6 +214,7 @@ export default [
             label: '链接',
             href: 'https://www.bilibili.com/',
             style: {
+                position: 'relative',
                 cursor: 'pointer',
                 textDecoration: 'none',
                 fontStyle: 'normal',
@@ -239,6 +242,7 @@ export default [
             src: 'https://images.pexels.com/photos/9287901/pexels-photo-9287901.jpeg',
             // src: '/img/logo.png',
             style: {
+                position: 'relative',
                 width: '200px',
                 height: '',
                 zIndex: '',
@@ -263,6 +267,7 @@ export default [
             controls: 'controls',
             src: 'https://pic.oh4k.com/spdiy/wp-content/uploads/2022/08/20220809-mGFGRn.mp4',
             style: {
+                position: 'relative',
                 width: '200px',
                 height: '',
                 zIndex: '',
