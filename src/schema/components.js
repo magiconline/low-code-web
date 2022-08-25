@@ -80,6 +80,8 @@ export default [
                 top: '',
                 bottom: '',
                 opacity: '',
+                fontSize:'12px',
+                color:'#000000'
             },
             onClick: `(e) => {alert('button clicked')}`,
             onDoubleClick: `(e) => {alert('button double clicked')}`
@@ -170,7 +172,7 @@ export default [
                 alignSelf: 'center',
                 zIndex: '1',
                 backgroundColor: '#ffffff',
-                color:'',
+                color:'#000000',
                 backgroundImage: 'url("")',
                 backgroundSize: 'contain',
                 opacity: "",
