@@ -173,7 +173,10 @@ export default [
                 backgroundImage: 'url("")',
                 backgroundSize: 'contain',
                 opacity: "",
-                zIndex: ''
+                zIndex: '',
+                borderWidth:'',
+                borderColor:'',
+                borderRadius:'',
 
 
             }
