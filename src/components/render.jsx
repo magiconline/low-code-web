@@ -268,7 +268,7 @@ function PreviewComponent({ selectComponent, setSelectComponent, pageInfo, setPa
     if (props.children.length > 0) {
         children = props.children.map((child, index) => {
             return typeof child === 'string' ? child
-                : <div className="canvas-field" key={index} id={child.props.id}>
+                : <div className="canvas-field" key={index} id={child.props.id} style={child.props.style}>
                     <PreviewComponent  {...child} pageInfo={pageInfo} setPageInfo={setPageInfo} selectComponent={selectComponent} setSelectComponent={setSelectComponent}></PreviewComponent>
                 </div>
         })
