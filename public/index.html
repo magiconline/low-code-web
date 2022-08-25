@@ -92,10 +92,10 @@
                     div_.style.display = 'none';
                     var div = document.getElementsByClassName('submit_btn_')[0];
                     div.style.display = 'block';
-                    setTimeout(function(){
+                    setTimeout(function () {
                         div_.style.display = 'block';
                         div.style.display = 'none';
-                    },1000)
+                    }, 1000)
                     var $parent = $(this).parent();
                     //trigger 事件执行完后，浏览器会为submit按钮获得焦点
                     $("form .required:input").trigger("blur");
@@ -106,7 +106,7 @@
                     mobile_ = login.mobile.value;
                     psd_ = login.psd.value;
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'http://127.0.0.1:3000/api/login');
+                    xhr.open('POST', '/api/login');
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(
                         JSON.stringify({
@@ -121,7 +121,7 @@
                                 var Msg = "登录成功！";
                                 $parent.append("<span class='msg_onRight'>" + Msg + "</span>");
                                 setTimeout(function () {
-                                    self.location = 'admin.html?userID=' + res.userID;
+                                    self.location = '/admin.html?userID=' + res.userID;
                                 }, 1000)
                             } else if (res.code === 1) {
                                 if (num === 0) {
