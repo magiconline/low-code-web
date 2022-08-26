@@ -57,6 +57,7 @@ export function Header({ selectComponent, setSelectComponent, pageInfo, setPageI
             setSelectComponent(0)
             setPageInfoHistory([...newPageInfoHistory])
             setPageInfo({ ...newPageInfoHistory[index + 1] })
+            setIndex(index + 1)
         }
     }
 
